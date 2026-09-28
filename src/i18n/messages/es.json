@@ -15,11 +15,6 @@
     "light": "Claro",
     "dark": "Oscuro"
   },
-  "Home": {
-    "aboutTitle": "Sobre mí",
-    "aboutDescription": "Mi trayectoria, mis intereses y mi forma de crear.",
-    "aboutLink": "Más sobre mí"
-  },
   "About": {
     "title": "Sobre mí",
     "introduction": "Aquí aparecerá una breve presentación personal.",
@@ -57,8 +52,8 @@
     }
   },
   "Footer": {
-    "title": "Contacto",
-    "description": "Pronto añadiré los datos de contacto."
+    "navigation": "Navegación del pie de página",
+    "email": "Correo electrónico"
   },
   "NotFound": {
     "title": "Página no encontrada",
@@ -100,5 +95,11 @@
     "instructions": "Usa las flechas izquierda y derecha para recorrer los proyectos.",
     "position": "Proyecto {current} de {total}",
     "goTo": "Mostrar {title}"
+  },
+  "AboutPreview": {
+    "title": "Sobre mí",
+    "introduction": "Soy desarrollador de software y graduado en Ingeniería Informática. Me apasiona crear software y entender cómo funciona la tecnología, más allá de utilizarla.",
+    "direction": "Me interesa el software que interactúa con el mundo físico o ayuda a comprenderlo. Actualmente estoy construyendo mis bases en percepción, visión por computador y computación espacial: un camino que estoy aprendiendo a explorar.",
+    "readMore": "Conocer más"
   }
 }

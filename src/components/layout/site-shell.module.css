@@ -1,4 +1,4 @@
-.header, .main, .footer {
+.header, .main {
   width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
   margin-inline: auto;
 }
@@ -40,15 +40,6 @@
 .main {
   flex: 1;
   padding-block: clamp(2rem, 6vw, 5rem);
-}
-
-.footer {
-  padding-block: 2rem;
-  border-top: 1px solid var(--border);
-}
-
-.footer p {
-  color: var(--muted);
 }
 
 .skipLink {

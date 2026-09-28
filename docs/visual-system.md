@@ -4,7 +4,8 @@
 
 This iteration covers typography, semantic visual tokens, global navigation, and
 the Home introduction. Selected work now has its own
-[implementation notes](selected-work.md); About and Contact retain placeholders. Routing, locale resolution, metadata, and theme persistence are
+[implementation notes](selected-work.md). Home also includes an About preview
+and the shared site footer. Routing, locale resolution, metadata, and theme persistence are
 unchanged. No production dependencies were added or upgraded.
 
 ## Color and depth tokens
@@ -110,3 +111,23 @@ the server.
 Before designing the next section, review the real portrait crop, type-to-photo
 scale, negative space, curve prominence, dark-theme mat, and scroll travel.
 The temporary initials are scaffolding and will disappear when `src` is set.
+
+## About preview and footer
+
+About is deliberately calmer than Selected Work: a display heading, decorative
+03, and two short body-font paragraphs. From 48rem, the text sits in a wider right
+column, slightly below the heading. Smaller screens read vertically. Text remains
+visible immediately, with no reveal animation or client boundary.
+
+The footer uses a single flowing SVG divider, identity, text navigation, and a
+small copyright line. The divider is aria-hidden and uses the existing ornament
+token; all other colors also use existing semantic tokens. Links provide 44px
+minimum height and inherit the global focus outline. The footer's CSS is separate
+from shared header/main layout rules. Contact links render only for verified
+values in the site configuration. No new colors, fonts, dependencies, or client
+components are introduced.
+
+Review the large-screen negative space around About once final portrait and
+project images are available. The carousel's controls currently wrap at narrow
+widths, and the media placeholders dominate its visual weight; those existing
+choices were left unchanged for the later polish pass.

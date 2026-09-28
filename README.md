@@ -1,7 +1,8 @@
 # Portfolio foundation
 
 A multilingual, multi-page personal portfolio. The visual system, navigation,
-Home Hero, and Selected Work are implemented; About and Contact remain structural placeholders.
+Home Hero, Selected Work, About Preview, and the shared site footer are implemented.
+The full About and Projects pages still await their final content and design.
 See [the visual system notes](docs/visual-system.md) for tokens, fonts, portrait
 replacement, responsive behavior, and scroll compatibility.
 
@@ -47,7 +48,7 @@ src/
     layout/       # Server header/footer and shared layout CSS Modules
     navigation/   # Navigation definitions, active links, locale switcher
     projects/     # Server-rendered project list, selected work, and previews
-    home/         # Hero, portrait configuration, and decorative SVG
+    home/         # Hero, portrait configuration, decorative SVG, and About preview
     ui/           # Physical media frame and interactive carousel
     theme/        # Theme provider and selector
   fonts/          # Local variable fonts, loader, and OFL licenses
@@ -141,6 +142,21 @@ Long case studies and image alt text should be localized in the content layer
 when real content arrives. Add `app/[locale]/projects/[slug]/page.tsx` when detail
 pages are needed, look up the shared slug, and return `notFound()` for unknown
 projects. No detail links or empty detail routes are published yet.
+
+## About preview and footer
+
+`AboutPreview` supplies two short translated paragraphs and a locale-aware link
+to `/about`. Desktop uses an offset text column; mobile uses a vertical flow.
+`SiteFooter` stays in the shared locale layout, with identity, existing internal
+navigation, copyright, and an aria-hidden SVG divider. Both are Server Components
+with CSS Modules and no motion or client effects.
+
+`lib/site.ts` owns `owner`, `role`, and the optional `contact` fields: `github`,
+`linkedin`, and `email`. No personal contact values were found in the repository.
+Add only verified public values to `contact`; use full HTTPS profile URLs and a
+plain email address. The footer omits missing entries and the entire contact list
+when empty. It derives internal links from `navigationItems` and translates their
+labels. The copyright intentionally omits a year to avoid a stale build-time date.
 
 ## Metadata and production configuration
 

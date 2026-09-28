@@ -15,11 +15,6 @@
     "light": "Light",
     "dark": "Dark"
   },
-  "Home": {
-    "aboutTitle": "About me",
-    "aboutDescription": "My background, interests, and approach to making things.",
-    "aboutLink": "More about me"
-  },
   "About": {
     "title": "About",
     "introduction": "A brief personal introduction will appear here.",
@@ -57,8 +52,8 @@
     }
   },
   "Footer": {
-    "title": "Contact",
-    "description": "Contact details will be added soon."
+    "navigation": "Footer navigation",
+    "email": "Email"
   },
   "NotFound": {
     "title": "Page not found",
@@ -100,5 +95,11 @@
     "instructions": "Use the left and right arrow keys to browse projects.",
     "position": "Project {current} of {total}",
     "goTo": "Show {title}"
+  },
+  "AboutPreview": {
+    "title": "About me",
+    "introduction": "I’m a software developer and a Computer Engineering graduate. I love building software and understanding how technology works, beyond simply using it.",
+    "direction": "I’m drawn to software that interacts with or makes sense of the physical world. I’m currently building my foundations in perception, computer vision and spatial computing—a direction I’m learning to explore.",
+    "readMore": "Read more"
   }
 }
