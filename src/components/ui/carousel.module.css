@@ -1,0 +1,135 @@
+.carousel {
+  min-width: 0;
+}
+
+.viewport {
+  --edge-space: 6%;
+  position: relative;
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  list-style: none;
+  margin: 0;
+  padding: 2rem var(--edge-space) 2.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.viewport[data-dragging] {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+
+.viewport:focus-visible {
+  outline-offset: -4px;
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: center;
+  opacity: 0.65;
+  transform: rotate(-0.6deg);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+.slide:nth-child(even) {
+  transform: rotate(0.6deg);
+}
+
+.slide[data-active="true"], .slide:focus-within {
+  opacity: 1;
+  transform: rotate(0);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-inline: 0.25rem;
+}
+
+.controls button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--control-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.controls .rotation {
+  border: 0;
+  font-size: 1.2rem;
+}
+
+.positions {
+  display: flex;
+}
+
+.positions button {
+  border: 0;
+  min-width: 2.75rem;
+}
+
+.positions span {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--control-border);
+}
+
+.positions [aria-current] span {
+  width: 1.2rem;
+  border-radius: 1rem;
+  background: var(--foreground);
+}
+
+.counter {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  margin-inline: auto 0;
+}
+
+.arrows {
+  display: flex;
+  gap: 0.5rem;
+  margin-inline-start: 0.5rem;
+}
+
+@media (min-width: 48rem) {
+  .viewport {
+    --edge-space: 12%;
+  }
+  .controls {
+    padding-inline: 12%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide:nth-child(even) {
+    transform: none;
+    transition: none;
+  }
+}

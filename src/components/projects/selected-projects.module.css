@@ -1,0 +1,137 @@
+.section {
+  min-width: 0;
+  margin-block: clamp(2rem, 6vw, 6rem) clamp(5rem, 10vw, 9rem);
+  border-top: 1px solid var(--border);
+  padding-block-start: clamp(2rem, 5vw, 4rem);
+}
+
+.heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-block-end: 1rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+}
+
+.number {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.25rem;
+  color: var(--muted);
+}
+
+.heading h2 {
+  font-weight: 400;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  letter-spacing: -0.035em;
+}
+
+.allProjects {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 2.75rem;
+  font-size: 0.75rem;
+  text-decoration-thickness: 1px;
+}
+
+.allProjects span {
+  font-size: 1.25rem;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  color: var(--print-foreground);
+  background: var(--print-background);
+}
+
+.media[data-tone="ivory"] {
+  --print-background: var(--print-paper);
+  --print-foreground: var(--print-paper-foreground);
+}
+
+.media[data-tone="sage"] {
+  --print-background: var(--print-soft);
+  --print-foreground: var(--print-soft-foreground);
+}
+
+.media[data-tone="petrol"] {
+  --print-background: var(--print-strong);
+  --print-foreground: var(--print-strong-foreground);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 12%;
+  text-align: center;
+}
+
+.placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 6%;
+  border: 1px solid currentColor;
+  border-radius: 35% 0 0 0;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.previewTitle {
+  max-width: 14ch;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.65rem, 5.5vw, 5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.placeholderLabel {
+  position: absolute;
+  bottom: 10%;
+  font-size: clamp(0.55rem, 0.9vw, 0.7rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-block-start: 1.5rem;
+}
+
+.caption h3 {
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  font-weight: 500;
+}
+
+.caption p {
+  margin-block-start: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.technologies {
+  max-width: 28ch;
+}
+
+@media (min-width: 48rem) {
+  .heading {
+    margin-block-end: 2rem;
+  }
+}

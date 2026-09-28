@@ -1,0 +1,6 @@
+.frame {
+  padding: clamp(0.5rem, 1vw, 0.8rem);
+  background: var(--media-mat);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-media);
+}

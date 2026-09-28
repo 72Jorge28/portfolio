@@ -1,0 +1,104 @@
+{
+  "Navigation": {
+    "main": "Main navigation",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "language": "Language",
+    "skip": "Skip to main content",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "Theme": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "Home": {
+    "aboutTitle": "About me",
+    "aboutDescription": "My background, interests, and approach to making things.",
+    "aboutLink": "More about me"
+  },
+  "About": {
+    "title": "About",
+    "introduction": "A brief personal introduction will appear here.",
+    "approachTitle": "My approach",
+    "approachDescription": "More about how I work and what I value, coming soon."
+  },
+  "Projects": {
+    "title": "Projects",
+    "introduction": "A collection of projects. More details coming soon.",
+    "empty": "Projects will be added soon.",
+    "technologies": "Technologies",
+    "repository": "Source code",
+    "live": "Visit project",
+    "status": {
+      "in-progress": "In progress",
+      "completed": "Completed",
+      "archived": "Archived"
+    }
+  },
+  "ProjectContent": {
+    "expensesAndSavings": {
+      "title": "Expenses & Savings",
+      "shortDescription": "Project details will be added soon.",
+      "category": "Details forthcoming"
+    },
+    "gelysEventStyling": {
+      "title": "Gely’s Event Styling",
+      "shortDescription": "Project details will be added soon.",
+      "category": "Details forthcoming"
+    },
+    "livingGallery": {
+      "title": "Living Gallery",
+      "shortDescription": "Project details will be added soon.",
+      "category": "Details forthcoming"
+    }
+  },
+  "Footer": {
+    "title": "Contact",
+    "description": "Contact details will be added soon."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "This page is unavailable.",
+    "home": "Return home"
+  },
+  "Metadata": {
+    "home": {
+      "title": "Home",
+      "description": "A personal portfolio of projects, ideas, and creative work."
+    },
+    "about": {
+      "title": "About",
+      "description": "Background, interests, and approach to making things."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Explore projects and experiments in this personal portfolio."
+    }
+  },
+  "Hero": {
+    "degree": "Graduate in Computer Engineering",
+    "portraitAlt": "Portrait of Jorge Ramos",
+    "portraitPlaceholder": "Portrait · coming soon"
+  },
+  "SelectedWork": {
+    "title": "Selected Work",
+    "allProjects": "View all projects",
+    "placeholder": "Preview forthcoming"
+  },
+  "Carousel": {
+    "label": "Selected projects",
+    "description": "carousel",
+    "previous": "Previous project",
+    "next": "Next project",
+    "play": "Start automatic progression",
+    "pause": "Pause automatic progression",
+    "reducedMotion": "Automatic progression is disabled with reduced motion",
+    "instructions": "Use the left and right arrow keys to browse projects.",
+    "position": "Project {current} of {total}",
+    "goTo": "Show {title}"
+  }
+}

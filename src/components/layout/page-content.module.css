@@ -1,0 +1,15 @@
+.content {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.content section, .content header {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.content p {
+  max-width: 65ch;
+  color: var(--muted);
+}

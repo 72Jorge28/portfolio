@@ -1,0 +1,209 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: 0.5rem 4rem;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2.75rem;
+}
+
+.ornament {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--ornament);
+  stroke: currentColor;
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.ornament path {
+  vector-effect: non-scaling-stroke;
+}
+
+.portrait {
+  width: min(74vw, 18.75rem);
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+.portraitContent {
+  position: relative;
+  overflow: hidden;
+  background: var(--media-placeholder);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--media-foreground);
+}
+
+.placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 9%;
+  border: 1px solid var(--media-line);
+  border-radius: 48% 48% 0 0;
+  border-block-end: 0;
+}
+
+.placeholderMark {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  opacity: 0.55;
+}
+
+.placeholderLabel {
+  position: absolute;
+  inset-inline: 1rem;
+  bottom: 1.15rem;
+  text-align: center;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.introduction {
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+}
+
+.name {
+  font-size: clamp(3.75rem, 15vw, 6rem);
+  font-weight: 400;
+  line-height: 0.93;
+  letter-spacing: -0.045em;
+}
+
+.details {
+  margin-block-start: 1.75rem;
+}
+
+.role {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.degree {
+  margin-block-start: 0.65rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    padding-block: 0 4rem;
+  }
+
+  .stage {
+    min-height: min(76svh, 48rem);
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0;
+    align-items: center;
+    justify-items: start;
+    padding-block: 3rem;
+  }
+
+  .portrait {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(32vw, 25rem);
+    margin-inline-start: -1rem;
+  }
+
+  .introduction {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    text-align: start;
+    padding-inline-start: 4%;
+    padding-block-start: 3rem;
+  }
+
+  .name {
+    font-size: clamp(5.5rem, 10.5vw, 10rem);
+  }
+
+  .name span {
+    display: block;
+    margin-inline-start: 0.35em;
+  }
+
+  .details {
+    margin-block-start: 2.5rem;
+    padding-inline-start: 0.35rem;
+  }
+
+  .degree {
+    font-size: 0.875rem;
+  }
+}
+
+/* Static composition is the baseline; only supported, spacious viewports pin it. */
+@supports (animation-timeline: view()) and (animation-range: contain) {
+  @media (min-width: 64rem) and (min-height: 40rem) and (prefers-reduced-motion: no-preference) {
+    .hero {
+      min-height: 130svh;
+      view-timeline-name: --hero;
+      view-timeline-axis: block;
+      padding-block-end: 0;
+    }
+
+    .stage {
+      position: sticky;
+      top: 1rem;
+      min-height: 85svh;
+    }
+
+    .portrait {
+      animation: portrait-shift linear both;
+      animation-timeline: --hero;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .introduction {
+      animation: introduction-shift linear both;
+      animation-timeline: --hero;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+}
+
+@keyframes portrait-shift {
+  from {
+    transform: translateX(0) rotate(-2deg);
+  }
+  to {
+    transform: translateX(12%) rotate(0deg);
+  }
+}
+
+@keyframes introduction-shift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait {
+    transform: none;
+  }
+}

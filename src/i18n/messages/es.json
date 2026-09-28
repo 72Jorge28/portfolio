@@ -1,0 +1,104 @@
+{
+  "Navigation": {
+    "main": "Navegación principal",
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "language": "Idioma",
+    "skip": "Saltar al contenido principal",
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "Theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "Home": {
+    "aboutTitle": "Sobre mí",
+    "aboutDescription": "Mi trayectoria, mis intereses y mi forma de crear.",
+    "aboutLink": "Más sobre mí"
+  },
+  "About": {
+    "title": "Sobre mí",
+    "introduction": "Aquí aparecerá una breve presentación personal.",
+    "approachTitle": "Mi enfoque",
+    "approachDescription": "Pronto compartiré más sobre cómo trabajo y lo que valoro."
+  },
+  "Projects": {
+    "title": "Proyectos",
+    "introduction": "Una colección de proyectos. Pronto habrá más detalles.",
+    "empty": "Pronto añadiré proyectos.",
+    "technologies": "Tecnologías",
+    "repository": "Código fuente",
+    "live": "Visitar proyecto",
+    "status": {
+      "in-progress": "En desarrollo",
+      "completed": "Completado",
+      "archived": "Archivado"
+    }
+  },
+  "ProjectContent": {
+    "expensesAndSavings": {
+      "title": "Expenses & Savings",
+      "shortDescription": "Pronto añadiré los detalles del proyecto.",
+      "category": "Detalles próximamente"
+    },
+    "gelysEventStyling": {
+      "title": "Gely’s Event Styling",
+      "shortDescription": "Pronto añadiré los detalles del proyecto.",
+      "category": "Detalles próximamente"
+    },
+    "livingGallery": {
+      "title": "Living Gallery",
+      "shortDescription": "Pronto añadiré los detalles del proyecto.",
+      "category": "Detalles próximamente"
+    }
+  },
+  "Footer": {
+    "title": "Contacto",
+    "description": "Pronto añadiré los datos de contacto."
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "Esta página no está disponible.",
+    "home": "Volver al inicio"
+  },
+  "Metadata": {
+    "home": {
+      "title": "Inicio",
+      "description": "Un portafolio personal de proyectos, ideas y trabajo creativo."
+    },
+    "about": {
+      "title": "Sobre mí",
+      "description": "Mi trayectoria, mis intereses y mi forma de crear."
+    },
+    "projects": {
+      "title": "Proyectos",
+      "description": "Explora los proyectos y experimentos de este portafolio personal."
+    }
+  },
+  "Hero": {
+    "degree": "Graduado en Ingeniería Informática",
+    "portraitAlt": "Retrato de Jorge Ramos",
+    "portraitPlaceholder": "Retrato · próximamente"
+  },
+  "SelectedWork": {
+    "title": "Proyectos seleccionados",
+    "allProjects": "Ver todos los proyectos",
+    "placeholder": "Vista previa próximamente"
+  },
+  "Carousel": {
+    "label": "Proyectos seleccionados",
+    "description": "carrusel",
+    "previous": "Proyecto anterior",
+    "next": "Proyecto siguiente",
+    "play": "Iniciar avance automático",
+    "pause": "Pausar avance automático",
+    "reducedMotion": "El avance automático está desactivado con movimiento reducido",
+    "instructions": "Usa las flechas izquierda y derecha para recorrer los proyectos.",
+    "position": "Proyecto {current} de {total}",
+    "goTo": "Mostrar {title}"
+  }
+}
