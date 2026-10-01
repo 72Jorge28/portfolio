@@ -1,6 +1,31 @@
 .frame {
-  padding: clamp(0.5rem, 1vw, 0.8rem);
-  background: var(--media-mat);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-media);
+  filter: drop-shadow(0 0.65rem 0.8rem var(--shadow-shaped-media));
+}
+.frame[data-shape="hero"] { --media-mask: url("/shapes/hero-frame-02.svg"); }
+.frame[data-shape="project"] { --media-mask: url("/shapes/media-frame-02.svg"); }
+.clip {
+  mask-image: var(--media-mask);
+  mask-mode: alpha;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  isolation: isolate;
+}
+
+/* Rotate only the supplied mask; counter-rotate its contents to keep portraits upright. */
+.frame[data-shape="hero"] { position: relative; aspect-ratio: 760 / 1200; }
+.frame[data-shape="hero"] .clip {
+  position: absolute;
+  width: 157.894737%;
+  height: 63.333333%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.frame[data-shape="hero"] .clip > * {
+  position: absolute;
+  width: 63.333333%;
+  height: 157.894737%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
 }

@@ -40,11 +40,13 @@ export default async function LocaleLayout({
             <a className={styles.skipLink} href="#main-content">
               {t("skip")}
             </a>
-            <SiteHeader />
-            <main id="main-content" tabIndex={-1} className={styles.main}>
-              {children}
-            </main>
-            <SiteFooter />
+            <div className={styles.frame}>
+              <SiteHeader />
+              <main id="main-content" tabIndex={-1} className={styles.main}>
+                {children}
+              </main>
+              <SiteFooter />
+            </div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

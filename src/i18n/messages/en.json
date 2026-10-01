@@ -100,6 +100,8 @@
     "title": "About me",
     "introduction": "I’m a software developer and a Computer Engineering graduate. I love building software and understanding how technology works, beyond simply using it.",
     "direction": "I’m drawn to software that interacts with or makes sense of the physical world. I’m currently building my foundations in perception, computer vision and spatial computing—a direction I’m learning to explore.",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "personalPlaceholder": "Personal photograph · coming soon",
+    "directionPlaceholder": "Direction image · coming soon"
   }
 }

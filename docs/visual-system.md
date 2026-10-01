@@ -29,11 +29,12 @@ create lighter/darker tonal variations; neither is a separate accent family.
 | `--media-placeholder` | 35% sage, 65% ivory | 65% petrol, 35% sage |
 | `--media-foreground` | Petrol | Ivory |
 | `--media-line` | Petrol at 24% opacity | Sage at 55% opacity |
+| `--shadow-shaped-media` | Petrol at 16% opacity | Background at 75% opacity |
 | `--shadow-media` | Three soft petrol-derived shadows | Three soft background-derived shadows |
 
 The stronger control border is separate from decorative rules to preserve
-control visibility. The reusable `MediaFrame` owns the mat, border, and physical
-shadow. Rotation belongs to the Hero portrait, not to all future framed media.
+control visibility. The reusable `MediaFrame` owns media masking and restrained physical
+shadow. Small rotations belong to their compositions rather than the shared frame.
 
 ## Typography
 
@@ -46,88 +47,107 @@ Both font variable classes are attached to the existing locale root layout.
 copy, navigation, labels, and controls. Font licenses and source attribution are
 in `src/fonts/`. Builds and visitors require no Google font request.
 
-## Hero composition and portrait replacement
+## Structural Home composition
 
-- `HomeHero` is an async Server Component that owns the semantic introduction.
-- `HeroOrnament` is a decorative, unfocusable, aria-hidden inline SVG.
-- `MediaFrame` is a reusable Server Component for physical media presentation.
-- `portrait.ts` owns `src`, dimensions, and crop position.
+Home is a full-width sequence of regions, each with a constrained inner container:
+Hero, Selected Work, one About section with present/future compositions, and the
+shared footer. Other route widths are unchanged. `home-regions.module.css` owns
+inner width; the shell scopes its full-width rule to the Home wrapper.
 
-The Hero creates its own stacking context: the page is the background, the SVG
-sits behind the composition, and media/text sit above it. No global scroll layer
-or 3D dependency is introduced.
+`SectionCurve` remains the filled Hero-to-Selected Work boundary. About uses
+straight outer boundaries and one broad CSS elliptical arc between its present
+and future compositions. These boundaries occupy ordinary document flow and
+have no JavaScript, focus targets, or accessible content.
 
-The temporary portrait uses CSS and initials, with an explicit translated
-placeholder label. It does not depict a person. To replace it, put the selected
-image in `public/` and set `portrait.src` to its local path, or use a static image
-import. Keep the reserved aspect ratio or adjust the configured dimensions
-intentionally, update `objectPosition`, and review the translated `portraitAlt`
-in both message files. The existing branch uses `next/image`, responsive sizes,
-`fill`, and preload. The default reserved proportion is 3:4.
+The former arch, sweep, stem, and divider ornaments have no remaining consumers
+and were removed. Definitive decoration is intentionally deferred.
 
-The name and the requested title “Software Developer” deliberately remain the
-same in both languages; degree information and interface labels are translated.
+## Media and replacement
 
-## Responsive navigation and motion
+`MediaFrame` uses the user-supplied SVG files unchanged as alpha masks:
+`public/shapes/hero-frame-02.svg` and `public/shapes/media-frame-02.svg`.
+Both have a 1200:760 viewBox. Project media keeps that ratio. The Hero mask
+rotates 90 degrees into a 760:1200 portrait box; its content counter-rotates
+so the future photograph and current label remain upright. The outer
+wrapper applies a restrained semantic-color drop shadow to the masked child,
+so clipping does not remove the external depth. There is no rectangular matte
+behind the transparent shape. All projects share the project mask.
 
-Below 48rem, the header exposes a compact disclosure button. The same navigation
-and preference controls are expanded in a panel; they are not duplicated. Escape
-closes the panel and returns focus to the button. Following a link also closes
-it. It is a disclosure, not a modal dialog, so focus is not trapped. At 48rem and
-above, links and preferences appear inline without a menu button.
+`portrait.ts` owns the Hero source, reserved dimensions, and crop position.
+Set its source and review the translated alt text when the real portrait arrives.
+Project media continues to come from the centralized catalog; see
+[selected-work.md](selected-work.md). Check safe areas with actual imagery: masks
+must not crop important faces, interface labels, or meaningful screenshot details.
 
-Mobile Hero order is portrait, name, role, degree. At 48rem, the composition
-becomes an asymmetric two-column layout. Portrait and type sizes remain fluid.
+## About media and transition
 
-Scroll choreography is progressive enhancement behind CSS `@supports` for
-`animation-timeline` and `animation-range`. It is enabled only from 64rem wide,
-40rem high, and with `prefers-reduced-motion: no-preference`:
+About keeps full-width backgrounds and centers the text within an 84rem layout.
+The present media extends from that layout to the viewport's left edge. From
+48rem, media and text share one grid row: the media starts with a 72% inner-width
+region, while text starts at 58%. The SVG's transparent side lets them share
+layout space without covering the copy. The present composition has no vertical
+padding, so its media meets both boundaries.
+The supplied `public/shapes/about-primary-divider.svg` scales proportionally to
+the row height. On mobile, the media stacks above the text in a 10:7 box with a
+contained mask and still reaches the viewport's left edge without overflow
+clipping. The boundary between the two About backgrounds is straight.
 
-1. The Hero itself owns a named view timeline and a 130svh transition region.
-2. Its 85svh stage is sticky only within that region.
-3. Over the timeline's `contain` range, the portrait moves 12% of its own width
-   toward the outside and straightens from -2 degrees to zero.
-4. The text moves upward by 1.5rem. It never disappears.
-5. The stage leaves with its containing Hero; nothing stays fixed across the
-   remaining Home sections.
+Future keeps unboxed text and image in the same constrained composition. A short
+linear fade across the image's leading edge combines with
+a subtle radial arc. Both overlays stay inside the first 3–5rem of the image;
+the rest remains clear. On desktop, the image touches the future region's top
+and bottom edges. Mobile stacks the content and uses a short vertical fade at
+the image's upper edge.
 
-No scroll listeners, animation loop, polyfill, or animation library is used.
-Unsupported browsers, short windows, and mobile use the complete static layout
-without the extended sticky region. Reduced motion also removes the portrait's
-rotation; global rules disable nonessential transitions. Content is visible from
-the first render in every mode.
+Both About compositions derive height from their content and responsive block
+padding. Real-image crops remain to be reviewed; Hero, gallery, and Footer are
+unchanged.
 
-`animation-timeline` is not universally supported. Static composition is the
-intentional fallback, rather than a JavaScript imitation. See
-[MDN compatibility](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline).
+## Responsive behavior and motion
 
-## Client boundary and visual review
+Hero shows text left and media right from 48rem; mobile shows media then identity.
+Its content-growing minimum height is 100svh minus the measured header height.
+Home has no additional main padding. The existing SiteHeaderFrame ResizeObserver
+handles header wrapping and font/viewport changes; a rem-based estimate is used
+before measurement. Short viewports and enlarged text can grow the composition.
 
-Only `NavigationMenu` is a new Client Component, for disclosure state, Escape,
-and focus restoration. Existing client navigation and theme controls retain
-their responsibilities. Hero, SVG, media frame, and font configuration remain on
-the server.
+Hero retains its short CSS exit transition: 3% lateral media travel on mobile,
+8% on larger screens, a small lift, and rotation normalization. No sticky stage
+or scroll listener is introduced. Unsupported scroll-timeline browsers show the
+static composition. Reduced motion disables choreography and rotation.
 
-Before designing the next section, review the real portrait crop, type-to-photo
-scale, negative space, curve prominence, dark-theme mat, and scroll travel.
-The temporary initials are scaffolding and will disappear when `src` is set.
+Selected Work presents heading, gallery, controls, then its localized Projects
+link. Its continuous track and accessibility are unchanged. About reads image
+then present text/CTA, followed by future text then image. From 48rem these become
+opposing two-column compositions. There is one About heading, and both original
+localized paragraphs remain unchanged. Padding and straight region boundaries set the rhythm;
+there are no fixed-height sections or negative-margin gap corrections.
 
-## About preview and footer
+Footer retains identity, localized navigation, copyright, and only verified
+contact values from site configuration. Its former ornamental divider is gone.
 
-About is deliberately calmer than Selected Work: a display heading, decorative
-03, and two short body-font paragraphs. From 48rem, the text sits in a wider right
-column, slightly below the heading. Smaller screens read vertically. Text remains
-visible immediately, with no reveal animation or client boundary.
+## Component boundaries
 
-The footer uses a single flowing SVG divider, identity, text navigation, and a
-small copyright line. The divider is aria-hidden and uses the existing ornament
-token; all other colors also use existing semantic tokens. Links provide 44px
-minimum height and inherit the global focus outline. The footer's CSS is separate
-from shared header/main layout rules. Contact links render only for verified
-values in the site configuration. No new colors, fonts, dependencies, or client
-components are introduced.
+Hero, curves, About, Footer, MediaFrame, and project content remain Server
+Components. Existing navigation, theme, header measurement, and carousel client
+boundaries are preserved. No dependencies, routing, metadata, or font changes.
 
-Review the large-screen negative space around About once final portrait and
-project images are available. The carousel's controls currently wrap at narrow
-widths, and the media placeholders dominate its visual weight; those existing
-choices were left unchanged for the later polish pass.
+Review real-image crops, definitive decorative assets, and the pending palette
+refinement separately. The current surface contrast is deliberately provisional.
+
+## Structural recomposition verification
+
+The structural pass passed lint, TypeScript, all three existing test files,
+production build, and whitespace validation. Local Chrome checks covered EN/ES,
+light/dark, and widths 320, 390, 430, 480, 768, 1024, and 1440px. All four curves,
+both SVG mask URLs, one About heading, and two About compositions were present.
+No horizontal page overflow was measured. The enlarged upright Hero grows naturally in short viewports: at 390x500 its
+composition ends around 743px, and at 150% text sizing around 949px, without
+clipping or horizontal overflow.
+
+Keyboard selection, indicators, Play/Pause, pointer drag, emulated touch swipe,
+continuous movement, seam normalization, and reduced-motion manual navigation
+were checked. Desktop placement and localized CTA destinations were confirmed.
+Screenshots were reviewed in light and dark. No application exceptions were
+observed; an existing request for missing `/favicon.ico` returned 404.
+Safari, Firefox, and physical touch devices were not tested in this pass.

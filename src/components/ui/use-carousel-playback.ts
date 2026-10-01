@@ -15,7 +15,7 @@ function subscribeVisibility(callback: () => void) {
 
 export function useCarouselPlayback(
   viewport: RefObject<HTMLUListElement | null>,
-  advance: () => void,
+  advance: (seconds: number) => void,
   disabled: boolean,
 ) {
   const reducedMotion = useSyncExternalStore(
@@ -46,8 +46,16 @@ export function useCarouselPlayback(
 
   useEffect(() => {
     if (!playing) return;
-    const timer = window.setTimeout(advance, 6000);
-    return () => window.clearTimeout(timer);
+    let frame = 0;
+    let previous: number | undefined;
+    function tick(time: number) {
+      // Clamp a stalled frame; returning to the page never causes a large jump.
+      advance(previous === undefined ? 0 : Math.min((time - previous) / 1000, 0.05));
+      previous = time;
+      frame = window.requestAnimationFrame(tick);
+    }
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
   }, [advance, playing]);
 
   return { paused, setPaused, setHovered, reducedMotion, playing };

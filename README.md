@@ -48,8 +48,8 @@ src/
     layout/       # Server header/footer and shared layout CSS Modules
     navigation/   # Navigation definitions, active links, locale switcher
     projects/     # Server-rendered project list, selected work, and previews
-    home/         # Hero, portrait configuration, decorative SVG, and About preview
-    ui/           # Physical media frame and interactive carousel
+    home/         # Hero, portrait configuration, region container, and two-part About preview
+    ui/           # Organic media frames and continuous interactive gallery
     theme/        # Theme provider and selector
   fonts/          # Local variable fonts, loader, and OFL licenses
   i18n/
@@ -98,6 +98,7 @@ Pages, project rendering, header, footer, content lookup, and metadata run on th
 server. The application Client Components are:
 
 - `Carousel`: scroll position, pointer/keyboard controls, and playback lifecycle.
+- `SiteHeaderFrame`: actual header-height measurement for the content-growing Home viewport.
 - `ThemeProvider`: next-themes browser preference management.
 - `ThemeSwitcher`: theme selection and hydration-safe browser state.
 - `SiteNavigation`: current-path awareness for `aria-current`.
@@ -149,7 +150,7 @@ projects. No detail links or empty detail routes are published yet.
 to `/about`. Desktop uses an offset text column; mobile uses a vertical flow.
 `SiteFooter` stays in the shared locale layout, with identity, existing internal
 navigation, copyright, and an aria-hidden SVG divider. Both are Server Components
-with CSS Modules and no motion or client effects.
+with CSS Modules and no client effects. Four shared structural curves connect Home regions; final decorative assets are deferred.
 
 `lib/site.ts` owns `owner`, `role`, and the optional `contact` fields: `github`,
 `linkedin`, and `email`. No personal contact values were found in the repository.

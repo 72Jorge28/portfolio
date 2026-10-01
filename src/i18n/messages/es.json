@@ -100,6 +100,8 @@
     "title": "Sobre mí",
     "introduction": "Soy desarrollador de software y graduado en Ingeniería Informática. Me apasiona crear software y entender cómo funciona la tecnología, más allá de utilizarla.",
     "direction": "Me interesa el software que interactúa con el mundo físico o ayuda a comprenderlo. Actualmente estoy construyendo mis bases en percepción, visión por computador y computación espacial: un camino que estoy aprendiendo a explorar.",
-    "readMore": "Conocer más"
+    "readMore": "Conocer más",
+    "personalPlaceholder": "Fotografía personal · próximamente",
+    "directionPlaceholder": "Imagen sobre mi dirección · próximamente"
   }
 }

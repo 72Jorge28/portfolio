@@ -1,35 +1,23 @@
 .hero {
   position: relative;
   isolation: isolate;
-  padding-block: 0.5rem 4rem;
+  display: grid;
+  align-items: center;
+  min-height: calc(100svh - var(--site-header-height, var(--site-header-fallback)) - var(--main-block-padding));
+  padding-block: 0.5rem 2rem;
 }
 
 .stage {
+  min-width: 0;
   position: relative;
   display: grid;
   justify-items: center;
-  gap: 2.75rem;
-}
-
-.ornament {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--ornament);
-  stroke: currentColor;
-  stroke-width: 1;
-  pointer-events: none;
-}
-
-.ornament path {
-  vector-effect: non-scaling-stroke;
+  gap: 2rem;
 }
 
 .portrait {
-  width: min(74vw, 18.75rem);
-  transform: rotate(-2deg);
+  width: min(84%, 23rem);
+  transform: rotate(-1deg);
   z-index: 1;
 }
 
@@ -47,15 +35,6 @@
   color: var(--media-foreground);
 }
 
-.placeholder::before {
-  content: "";
-  position: absolute;
-  inset: 9%;
-  border: 1px solid var(--media-line);
-  border-radius: 48% 48% 0 0;
-  border-block-end: 0;
-}
-
 .placeholderMark {
   font-family: var(--font-display), Georgia, serif;
   font-size: 3.5rem;
@@ -67,7 +46,7 @@
 .placeholderLabel {
   position: absolute;
   inset-inline: 1rem;
-  bottom: 1.15rem;
+  bottom: 16%;
   text-align: center;
   font-size: 0.625rem;
   letter-spacing: 0.12em;
@@ -81,6 +60,7 @@
 }
 
 .name {
+  overflow-wrap: anywhere;
   font-size: clamp(3.75rem, 15vw, 6rem);
   font-weight: 400;
   line-height: 0.93;
@@ -107,23 +87,22 @@
 
 @media (min-width: 48rem) {
   .hero {
-    padding-block: 0 4rem;
+    padding-block: 0 2rem;
   }
 
   .stage {
-    min-height: min(76svh, 48rem);
-    grid-template-columns: 1.15fr 1fr;
-    gap: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 2rem;
     align-items: center;
     justify-items: start;
-    padding-block: 3rem;
+    padding-block: 1.5rem;
   }
 
   .portrait {
     grid-column: 2;
     grid-row: 1;
-    width: min(32vw, 25rem);
-    margin-inline-start: -1rem;
+    width: min(92%, 30rem);
+    justify-self: center;
   }
 
   .introduction {
@@ -132,11 +111,11 @@
     align-self: center;
     text-align: start;
     padding-inline-start: 4%;
-    padding-block-start: 3rem;
+    padding-block-start: 0;
   }
 
   .name {
-    font-size: clamp(5.5rem, 10.5vw, 10rem);
+    font-size: clamp(5.5rem, 10vw, 9rem);
   }
 
   .name span {
@@ -154,56 +133,38 @@
   }
 }
 
-/* Static composition is the baseline; only supported, spacious viewports pin it. */
-@supports (animation-timeline: view()) and (animation-range: contain) {
-  @media (min-width: 64rem) and (min-height: 40rem) and (prefers-reduced-motion: no-preference) {
+/* The section scrolls normally. Motion only follows its short exit phase. */
+@supports (animation-timeline: view()) and (animation-range: exit) {
+  @media (prefers-reduced-motion: no-preference) {
     .hero {
-      min-height: 130svh;
       view-timeline-name: --hero;
       view-timeline-axis: block;
-      padding-block-end: 0;
     }
-
-    .stage {
-      position: sticky;
-      top: 1rem;
-      min-height: 85svh;
-    }
-
     .portrait {
+      --portrait-travel: 3%;
       animation: portrait-shift linear both;
       animation-timeline: --hero;
-      animation-range: contain 0% contain 100%;
+      animation-range: exit 0% exit 65%;
     }
-
     .introduction {
       animation: introduction-shift linear both;
       animation-timeline: --hero;
-      animation-range: contain 0% contain 100%;
+      animation-range: exit 0% exit 65%;
     }
+  }
+  @media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
+    .portrait { --portrait-travel: 8%; }
   }
 }
 
 @keyframes portrait-shift {
-  from {
-    transform: translateX(0) rotate(-2deg);
-  }
-  to {
-    transform: translateX(12%) rotate(0deg);
-  }
+  from { transform: translate(0, 0) rotate(-1deg); }
+  to { transform: translate(var(--portrait-travel), -0.65rem) rotate(0); }
 }
-
 @keyframes introduction-shift {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-1.5rem);
-  }
+  from { transform: translateY(0); }
+  to { transform: translateY(-0.6rem); }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .portrait {
-    transform: none;
-  }
+  .portrait { transform: none; }
 }

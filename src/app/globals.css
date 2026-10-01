@@ -8,6 +8,7 @@
   --foreground: var(--petrol);
   --muted: color-mix(in srgb, var(--petrol) 85%, var(--sage));
   --border: color-mix(in srgb, var(--sage) 50%, var(--ivory));
+  --page-frame: color-mix(in srgb, #a88e5f 72%, var(--background));
   --control-border: color-mix(in srgb, var(--petrol) 65%, var(--ivory));
   --accent: var(--petrol);
   --accent-foreground: var(--ivory);
@@ -22,6 +23,7 @@
   --print-soft-foreground: color-mix(in srgb, var(--petrol) 45%, black);
   --print-strong: var(--petrol);
   --print-strong-foreground: var(--ivory);
+  --shadow-shaped-media: color-mix(in srgb, var(--petrol) 16%, transparent);
   --shadow-media: 0 2px 4px color-mix(in srgb, var(--petrol) 8%, transparent),
     0 14px 24px -12px color-mix(in srgb, var(--petrol) 26%, transparent),
     0 40px 65px -28px color-mix(in srgb, var(--petrol) 24%, transparent);
@@ -37,6 +39,7 @@
   --foreground: var(--ivory);
   --muted: color-mix(in srgb, var(--ivory) 72%, var(--sage));
   --border: color-mix(in srgb, var(--sage) 32%, var(--background));
+  --page-frame: color-mix(in srgb, #b8a675 65%, var(--background));
   --control-border: color-mix(in srgb, var(--sage) 78%, var(--background));
   --accent: color-mix(in srgb, var(--sage) 65%, var(--ivory));
   --accent-foreground: var(--background);
@@ -45,6 +48,7 @@
   --media-placeholder: color-mix(in srgb, var(--petrol) 65%, var(--sage));
   --media-foreground: var(--ivory);
   --media-line: color-mix(in srgb, var(--sage) 55%, transparent);
+  --shadow-shaped-media: color-mix(in srgb, var(--background) 75%, transparent);
   --shadow-media: 0 2px 4px color-mix(in srgb, var(--background) 30%, transparent),
     0 14px 24px -12px color-mix(in srgb, var(--background) 75%, transparent),
     0 40px 65px -28px color-mix(in srgb, var(--background) 85%, transparent);

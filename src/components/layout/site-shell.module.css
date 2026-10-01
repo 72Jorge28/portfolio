@@ -1,3 +1,12 @@
+.frame {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+}
+
 .header, .main {
   width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
   margin-inline: auto;
@@ -38,8 +47,11 @@
 }
 
 .main {
+  --main-block-padding: clamp(1.5rem, 3vw, 3rem);
+  /* Brand line box + header padding + border, before browser measurement. */
+  --site-header-fallback: calc(5.6rem + 1px);
   flex: 1;
-  padding-block: clamp(2rem, 6vw, 5rem);
+  padding-block: var(--main-block-padding);
 }
 
 .skipLink {
@@ -59,4 +71,16 @@
 
 @media (min-width: 48rem) {
   .header { padding-block: 1.5rem; }
+  .main { --site-header-fallback: calc(6.6rem + 1px); }
+}
+
+@media (min-width: 64rem) {
+  .frame { border-inline: 1px solid var(--page-frame); }
+}
+
+/* Home regions span the page; their content retains the shared inner width. */
+.main:has(> [data-home]) {
+  --main-block-padding: 0px;
+  width: 100%;
+  padding: 0;
 }

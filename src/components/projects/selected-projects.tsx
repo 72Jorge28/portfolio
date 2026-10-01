@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProjects } from "@/lib/projects/queries";
 import { Carousel } from "@/components/ui/carousel";
+import regions from "@/components/home/home-regions.module.css";
 import { ProjectPreview } from "./project-preview";
 import styles from "./selected-projects.module.css";
 
@@ -15,29 +16,32 @@ export async function SelectedProjects() {
 
   return (
     <section className={styles.section} aria-labelledby="selected-work-title">
-      <header className={styles.heading}>
-        <div className={styles.titleGroup}>
-          <span className={styles.number} aria-hidden="true">02</span>
-          <h2 id="selected-work-title">{t("title")}</h2>
+      <div className={regions.inner}>
+        <header className={styles.heading}>
+          <div className={styles.titleGroup}>
+            <span className={styles.number} aria-hidden="true">02</span>
+            <h2 id="selected-work-title">{t("title")}</h2>
+          </div>
+        </header>
+        <Carousel
+          items={selected.map((project, index) => ({
+            id: project.slug,
+            navigationLabel: carousel("goTo", { title: project.title }),
+            positionLabel: carousel("position", { current: index + 1, total: selected.length }),
+            content: <ProjectPreview project={project} placeholder={t("placeholder")} />,
+          }))}
+          labels={{
+            label: carousel("label"), description: carousel("description"),
+            play: carousel("play"), pause: carousel("pause"),
+            reducedMotion: carousel("reducedMotion"), instructions: carousel("instructions"),
+          }}
+        />
+        <div className={styles.action}>
+          <Link className={styles.allProjects} href="/projects">
+            {t("allProjects")} <span aria-hidden="true">↗</span>
+          </Link>
         </div>
-        <Link className={styles.allProjects} href="/projects">
-          {t("allProjects")} <span aria-hidden="true">↗</span>
-        </Link>
-      </header>
-      <Carousel
-        items={selected.map((project, index) => ({
-          id: project.slug,
-          navigationLabel: carousel("goTo", { title: project.title }),
-          positionLabel: carousel("position", { current: index + 1, total: selected.length }),
-          content: <ProjectPreview project={project} placeholder={t("placeholder")} />,
-        }))}
-        labels={{
-          label: carousel("label"), description: carousel("description"),
-          previous: carousel("previous"), next: carousel("next"),
-          play: carousel("play"), pause: carousel("pause"),
-          reducedMotion: carousel("reducedMotion"), instructions: carousel("instructions"),
-        }}
-      />
+      </div>
     </section>
   );
 }

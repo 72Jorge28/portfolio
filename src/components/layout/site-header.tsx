@@ -4,6 +4,7 @@ import { SiteNavigation } from "@/components/navigation/site-navigation";
 import { LocaleSwitcher } from "@/components/navigation/locale-switcher";
 import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import { NavigationMenu } from "@/components/navigation/navigation-menu";
+import { SiteHeaderFrame } from "./site-header-frame";
 import styles from "./site-shell.module.css";
 
 export async function SiteHeader() {
@@ -14,7 +15,7 @@ export async function SiteHeader() {
   ]);
 
   return (
-    <header className={styles.header}>
+    <SiteHeaderFrame>
       <Link
         href="/"
         className={styles.brand}
@@ -43,6 +44,6 @@ export async function SiteHeader() {
           />
         </div>
       </NavigationMenu>
-    </header>
+    </SiteHeaderFrame>
   );
 }

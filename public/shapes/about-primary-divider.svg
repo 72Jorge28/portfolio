@@ -1,0 +1,16 @@
+<svg
+  width="1000"
+  height="700"
+  viewBox="0 0 1000 700"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M0 0H500
+       C700 100 600 500 500 420
+       C400 200 600 300 600 300
+       C600 400 500 500 600 700
+       H0V0Z"
+    fill="currentColor"
+  />
+</svg>

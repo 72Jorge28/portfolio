@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { MediaFrame } from "@/components/ui/media-frame";
-import { HeroOrnament } from "./hero-ornament";
+import regions from "./home-regions.module.css";
 import { portrait } from "./portrait";
 import styles from "./hero.module.css";
 
@@ -10,10 +10,9 @@ export async function HomeHero() {
 
   return (
     <section className={styles.hero} aria-labelledby="introduction-title">
-      <div className={styles.stage}>
-        <HeroOrnament />
+      <div className={`${styles.stage} ${regions.inner}`}>
         <div className={styles.portrait}>
-          <MediaFrame>
+          <MediaFrame shape="hero">
             <div
               className={styles.portraitContent}
               style={{ aspectRatio: `${portrait.width} / ${portrait.height}` }}
@@ -23,7 +22,7 @@ export async function HomeHero() {
                   src={portrait.src}
                   alt={t("portraitAlt")}
                   fill
-                  sizes="(min-width: 768px) 34vw, (min-width: 390px) 300px, 74vw"
+                  sizes="(min-width: 1280px) 560px, (min-width: 768px) 45vw, 90vw"
                   preload
                   style={{ objectFit: "cover", objectPosition: portrait.objectPosition }}
                 />

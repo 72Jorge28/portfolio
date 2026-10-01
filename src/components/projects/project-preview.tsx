@@ -8,12 +8,12 @@ export function ProjectPreview({ project, placeholder }: { project: Project; pla
 
   return (
     <article>
-      <MediaFrame>
+      <MediaFrame shape="project">
         <div className={styles.media} data-tone={project.mediaTone}>
           {image ? (
             <Image src={image.src} alt={image.alt} fill
-              sizes="(min-width: 1280px) 920px, (min-width: 768px) 70vw, 85vw"
-              style={{ objectFit: "contain" }} />
+              sizes="(min-width: 1280px) 700px, (min-width: 768px) 60vw, 85vw"
+              className={styles.image} style={{ objectFit: "contain" }} />
           ) : (
             <div className={styles.placeholder}>
               <span className={styles.previewTitle} aria-hidden="true">{project.title}</span>

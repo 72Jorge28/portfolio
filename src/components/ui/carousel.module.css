@@ -3,7 +3,7 @@
 }
 
 .viewport {
-  --edge-space: 6%;
+  --edge-space: 5%;
   position: relative;
   display: flex;
   gap: clamp(1.5rem, 4vw, 3rem);
@@ -12,7 +12,7 @@
   padding: 2rem var(--edge-space) 2.5rem;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
+  overflow-anchor: none;
   scrollbar-width: none;
   cursor: grab;
 }
@@ -34,18 +34,15 @@
 .slide {
   flex: 0 0 100%;
   min-width: 0;
-  scroll-snap-align: center;
-  opacity: 0.65;
-  transform: rotate(-0.6deg);
-  transition: opacity 350ms ease, transform 350ms ease;
+  transform: rotate(-0.4deg);
+  transition: transform 350ms ease;
 }
 
-.slide:nth-child(even) {
-  transform: rotate(0.6deg);
+.slide[data-item-index="1"] {
+  transform: rotate(0.4deg);
 }
 
 .slide[data-active="true"], .slide:focus-within {
-  opacity: 1;
   transform: rotate(0);
 }
 
@@ -54,6 +51,7 @@
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  justify-content: center;
   padding-inline: 0.25rem;
 }
 
@@ -109,27 +107,31 @@
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   white-space: nowrap;
-  margin-inline: auto 0;
-}
-
-.arrows {
-  display: flex;
-  gap: 0.5rem;
   margin-inline-start: 0.5rem;
 }
 
 @media (min-width: 48rem) {
   .viewport {
-    --edge-space: 12%;
-  }
-  .controls {
-    padding-inline: 12%;
+    --edge-space: 20%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slide, .slide:nth-child(even) {
+  .slide, .slide[data-item-index="1"] {
     transform: none;
     transition: none;
   }
+}
+
+/* Copies only join the track once browser geometry is available. */
+.slide:not([data-copy="1"]) { display: none; }
+.viewport[data-loop-ready="true"] .slide { display: block; }
+
+.slide > article > :first-child {
+  opacity: 0.72;
+  transition: opacity 350ms ease;
+}
+.slide[data-active="true"] > article > :first-child,
+.slide:focus-within > article > :first-child {
+  opacity: 1;
 }

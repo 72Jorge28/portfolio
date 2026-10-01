@@ -16,11 +16,6 @@ export async function SiteFooter() {
 
   return (
     <footer className={styles.footer}>
-      <svg className={styles.divider} viewBox="0 0 1200 50" fill="none" aria-hidden="true" focusable="false">
-        <path d="M0 38H830C960 38 946 8 1065 8H1200" />
-        <path d="M830 38C926 38 960 22 1028 22" />
-        <circle cx="1033" cy="22" r="3" />
-      </svg>
       <div className={styles.row}>
         <div>
           <p className={styles.name}>{site.owner}</p>

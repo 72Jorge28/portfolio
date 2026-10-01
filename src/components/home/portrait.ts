@@ -10,7 +10,7 @@ type Portrait = {
 // Add a local image path or static import here when the final portrait is selected.
 export const portrait: Portrait = {
   src: null,
-  width: 900,
+  width: 760,
   height: 1200,
   objectPosition: "50% 50%",
 };

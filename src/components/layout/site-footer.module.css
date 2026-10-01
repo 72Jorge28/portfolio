@@ -1,21 +1,7 @@
 .footer {
   width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
   margin-inline: auto;
-  padding-block-end: 2rem;
-}
-
-.divider {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-block-end: clamp(2rem, 4vw, 3.5rem);
-  color: var(--ornament);
-}
-
-.divider path, .divider circle {
-  stroke: currentColor;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+  padding-block: 2rem;
 }
 
 .row, .bottom {
