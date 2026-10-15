@@ -5,8 +5,8 @@ import { navigationItems } from "@/components/navigation/navigation-items";
 import styles from "./site-footer.module.css";
 
 export async function SiteFooter() {
-  const [t, navigation] = await Promise.all([
-    getTranslations("Footer"), getTranslations("Navigation"),
+  const [t, navigation, identity] = await Promise.all([
+    getTranslations("Footer"), getTranslations("Navigation"), getTranslations("Identity"),
   ]);
   const contacts = [
     { label: "GitHub", href: site.contact.github },
@@ -18,8 +18,8 @@ export async function SiteFooter() {
     <footer className={styles.footer}>
       <div className={styles.row}>
         <div>
-          <p className={styles.name}>{site.owner}</p>
-          <p className={styles.role}>{site.role}</p>
+          <p className={styles.name}>{site.owner.fullName}</p>
+          <p className={styles.role}>{identity("role")}</p>
         </div>
         <nav aria-label={t("navigation")}>
           <ul className={styles.links}>
@@ -30,7 +30,7 @@ export async function SiteFooter() {
         </nav>
       </div>
       <div className={styles.bottom}>
-        <small className={styles.copyright}>© {site.owner}</small>
+        <small className={styles.copyright}>© {site.owner.fullName}</small>
         {contacts.length > 0 && (
           <ul className={styles.links}>
             {contacts.map((contact) => (

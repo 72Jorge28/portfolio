@@ -9,6 +9,9 @@
     "menu": "Menú",
     "close": "Cerrar"
   },
+  "Identity": {
+    "role": "Desarrollador de software"
+  },
   "Theme": {
     "label": "Tema",
     "system": "Sistema",
@@ -76,7 +79,7 @@
   },
   "Hero": {
     "degree": "Graduado en Ingeniería Informática",
-    "portraitAlt": "Retrato de Jorge Ramos",
+    "portraitAlt": "Retrato de {name}",
     "portraitPlaceholder": "Retrato · próximamente"
   },
   "SelectedWork": {
@@ -87,8 +90,6 @@
   "Carousel": {
     "label": "Proyectos seleccionados",
     "description": "carrusel",
-    "previous": "Proyecto anterior",
-    "next": "Proyecto siguiente",
     "play": "Iniciar avance automático",
     "pause": "Pausar avance automático",
     "reducedMotion": "El avance automático está desactivado con movimiento reducido",

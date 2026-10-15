@@ -11,7 +11,7 @@
   color: var(--foreground);
   background: transparent;
   border: 0;
-  font-size: 0.75rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -41,6 +41,15 @@
   border-bottom: 1px solid var(--border);
   padding: 1.25rem 0 1.75rem;
   gap: 1.5rem;
+  max-block-size: calc(100dvh - var(--site-header-height, var(--site-header-fallback)) - 0.5rem);
+  overflow-y: auto;
+  scroll-padding-block: 0.5rem;
+}
+
+/* Keep native scrollbars in the outer gutter, not in the content reference. */
+.panel > * {
+  width: var(--header-content-width);
+  margin-inline-start: var(--header-content-inset);
 }
 
 .panel[data-open="true"] {
@@ -50,6 +59,7 @@
 @media (min-width: 48rem) {
   .menu {
     flex: 1;
+    min-width: 0;
     margin-inline-start: 3rem;
   }
   .trigger {
@@ -57,6 +67,7 @@
   }
   .panel, .panel[data-open="true"] {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     position: static;
@@ -64,5 +75,12 @@
     border: 0;
     background: transparent;
     gap: 1.5rem;
+    max-block-size: none;
+    overflow: visible;
+    margin: 0;
+  }
+  .panel > * {
+    width: auto;
+    margin-inline-start: 0;
   }
 }

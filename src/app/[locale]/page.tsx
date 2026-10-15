@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div data-home>
       <HomeHero />
-      <SectionCurve from="background" to="surface" />
+      <SectionCurve />
       <SelectedProjects />
       <AboutPreview />
     </div>

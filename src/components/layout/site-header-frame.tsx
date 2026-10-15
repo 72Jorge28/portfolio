@@ -23,5 +23,11 @@ export function SiteHeaderFrame({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <header ref={header} className={styles.header}>{children}</header>;
+  return (
+    <header ref={header} className={styles.header}>
+      <div className={styles.headerContent}>
+        <div className={styles.headerControls}>{children}</div>
+      </div>
+    </header>
+  );
 }

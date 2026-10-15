@@ -16,7 +16,7 @@
 }
 
 .portrait {
-  width: min(84%, 23rem);
+  width: min(90%, 25rem);
   transform: rotate(-1deg);
   z-index: 1;
 }
@@ -25,6 +25,11 @@
   position: relative;
   overflow: hidden;
   background: var(--media-placeholder);
+}
+
+.photoSafeBox {
+  position: absolute;
+  inset: 5%;
 }
 
 .placeholder {
@@ -60,11 +65,15 @@
 }
 
 .name {
-  overflow-wrap: anywhere;
-  font-size: clamp(3.75rem, 15vw, 6rem);
+  overflow-wrap: normal;
+  font-size: clamp(2.75rem, 12vw, 5.5rem);
   font-weight: 400;
-  line-height: 0.93;
+  line-height: 1.08;
   letter-spacing: -0.045em;
+}
+
+.name span {
+  display: block;
 }
 
 .details {
@@ -72,16 +81,17 @@
 }
 
 .role {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.11em;
+  line-height: 1.6;
   text-transform: uppercase;
 }
 
 .degree {
   margin-block-start: 0.65rem;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1.7;
 }
 
@@ -101,7 +111,7 @@
   .portrait {
     grid-column: 2;
     grid-row: 1;
-    width: min(92%, 30rem);
+    width: min(98%, 32rem);
     justify-self: center;
   }
 
@@ -110,26 +120,15 @@
     grid-row: 1;
     align-self: center;
     text-align: start;
-    padding-inline-start: 4%;
     padding-block-start: 0;
   }
 
   .name {
-    font-size: clamp(5.5rem, 10vw, 9rem);
-  }
-
-  .name span {
-    display: block;
-    margin-inline-start: 0.35em;
+    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
   }
 
   .details {
     margin-block-start: 2.5rem;
-    padding-inline-start: 0.35rem;
-  }
-
-  .degree {
-    font-size: 0.875rem;
   }
 }
 

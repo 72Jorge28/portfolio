@@ -11,7 +11,7 @@ export function SiteNavigation({ labels }: {
 
   return (
     <nav aria-label={labels.main}>
-      <ul className={styles.links}>
+      <ul className={`${styles.links} ${styles.mainLinks}`}>
         {navigationItems.map(({ href, label }) => (
           <li key={href}>
             <Link href={href} aria-current={pathname === href ? "page" : undefined}>

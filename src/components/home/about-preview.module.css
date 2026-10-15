@@ -1,7 +1,13 @@
 /* src/components/home/about-preview.module.css */
+.present,
+.future {
+  container-type: inline-size;
+  /* Resolve text rails against the full composition, not a half-width column. */
+  --content-inset: max(var(--page-gutter), calc((100cqw - var(--content-width)) / 2));
+}
+
 .present {
   background: var(--background);
-  container-type: inline-size;
 }
 
 .future {
@@ -11,7 +17,7 @@
 .composition {
   display: grid;
   gap: clamp(1rem, 2.5vw, 2rem);
-  width: min(80rem, calc(100% - 2 * var(--page-gutter)));
+  width: 100%;
   margin-inline: auto;
   padding-block: clamp(1rem, 3vw, 1.75rem);
 }
@@ -36,15 +42,47 @@
 }
 
 .personalMedia {
-  width: calc(100% + (100cqw - 100%) / 2);
-  margin-inline-start: calc((100% - 100cqw) / 2);
+  box-sizing: border-box;
+  width: 100%;
   aspect-ratio: 10 / 7;
-  padding-inline: clamp(1.5rem, 4vw, 4rem) 46%;
-  mask: url("/shapes/about-primary-divider.svg") center / contain no-repeat;
+  padding-inline: var(--page-gutter) 55%;
+  mask: url("/shapes/about-primary-divider.svg") left center / 100% 100% no-repeat;
+}
+
+@media (width < 48rem) {
+  .personalMedia {
+    position: relative;
+    isolation: isolate;
+    /* Reserve the complete painted x-extent, not the source's transparent tail. */
+    aspect-ratio: 700 / 615.470032;
+    align-content: start;
+    /* The upper 35% is opaque across this inset, including the concavity. */
+    padding: 20% 10% 0;
+    background: transparent;
+    mask: none;
+  }
+
+  .personalMedia::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: calc(100cqw * 5 / 7);
+    left: 50%;
+    /* Keep the full rotated canvas independent of the compact flow height. */
+    width: calc(100% * 10 / 7);
+    height: 100cqw;
+    transform: translate(-50%, -50%) rotate(90deg);
+    pointer-events: none;
+    background: var(--media-placeholder);
+    mask: url("/shapes/about-primary-divider.svg") left center / 100% 100% no-repeat;
+  }
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   min-width: 0;
+  padding-inline: var(--content-inset);
   padding-block-end: clamp(1.25rem, 3vw, 2rem);
 }
 
@@ -92,22 +130,49 @@
   line-height: 1.8;
   text-wrap: pretty;
   padding-block: clamp(1rem, 3vw, 1.75rem);
+  padding-inline: var(--content-inset);
 }
 
 .directionMedia {
   position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
   aspect-ratio: 16 / 10;
   padding: clamp(1.5rem, 3vw, 3rem);
 }
 
-.directionMedia::before {
-  content: "";
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline: 0;
-  height: 4rem;
-  pointer-events: none;
-  background: linear-gradient(to bottom, var(--surface), transparent);
+@media (width < 48rem) {
+  .future {
+    background: transparent;
+  }
+
+  .future .composition {
+    position: relative;
+    isolation: isolate;
+    /* The natural text height locates the joint; the 16:10 box sizes its curve. */
+    --lower-media-height: 62.5cqw;
+    --lower-core-height: calc(var(--lower-media-height) * 0.2);
+    --lower-blend-height: calc(var(--lower-media-height) * 0.32);
+    background: var(--media-placeholder);
+  }
+
+  .directionMedia {
+    background: transparent;
+  }
+
+  .future .composition::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background: var(--surface);
+    /* One opaque text/joint plane continues into the full-width downward ellipse.
+       The overlapping mask tiles prevent a fractional-pixel join, not a cap layer. */
+    mask:
+      linear-gradient(#000, #000) top / 100% calc(100% - var(--lower-media-height) + 1px) no-repeat,
+      radial-gradient(ellipse 50% var(--lower-core-height) at 50% 0%, #000 100%, transparent calc(100% * var(--lower-blend-height) / var(--lower-core-height))) bottom / 100% var(--lower-media-height) no-repeat;
+  }
 }
 
 @media (min-width: 48rem) {
@@ -125,45 +190,72 @@
 
   .personalMedia {
     grid-area: 1 / 1;
-    width: min(calc(72% + (100cqw - 100%) / 2), 64rem);
-    align-self: stretch;
-    mask-size: auto 100%;
-    mask-position: 15% center;
+    /* Original 596.24/1000 mid-height crossing lands at half the inner frame. */
+    width: 83.9%;
+    align-self: center;
   }
 
   .content {
     grid-area: 1 / 1;
-    width: 42%;
-    margin-inline-start: 58%;
+    margin-inline-start: calc(51.7% + 1.5rem);
+    padding-inline-start: 0;
     padding-block: clamp(2rem, 3vw, 3rem);
   }
 
+  .future {
+    background: transparent;
+  }
+
   .future .composition {
+    position: relative;
+    isolation: isolate;
+    --blend-intrusion: clamp(3rem, 6vw, 6rem);
+    --blend-core: calc(var(--blend-intrusion) - 1.5rem);
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
+    gap: 0;
+    align-items: center;
   }
 
   .direction {
-    padding-inline-end: clamp(1rem, 3vw, 3rem);
+    padding-inline-end: 1.5rem;
     align-self: center;
   }
 
   .directionMedia {
     width: 100%;
+    padding-inline-start: calc(var(--blend-intrusion) + 1.5rem);
+    background: transparent;
   }
 
   .directionMedia::before {
+    content: none;
+  }
+
+  /* Paint follows the row; the centered content box retains its 16:10 ratio. */
+  .future .composition::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset-block: 0;
+    inset-inline: 50% 0;
+    pointer-events: none;
+    background: var(--media-placeholder);
+  }
+
+  .future .composition::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
     inset-block: 0;
     inset-inline-start: 0;
-    inset-inline-end: auto;
-    width: clamp(3rem, 6vw, 5rem);
-    height: auto;
-    background:
-      linear-gradient(to right, var(--surface), transparent),
-      radial-gradient(
-        ellipse 100% 95% at 0% 50%,
-        var(--surface),
-        transparent
-      );
+    width: calc(50% + var(--blend-intrusion));
+    pointer-events: none;
+    background: var(--surface);
+    /* An opaque left plane joins an opaque ellipse, even at the row's ends.
+       A 1px mask overlap avoids a fractional-pixel tile seam.
+       Feather outward from the core instead of fading beneath the text. */
+    mask:
+      linear-gradient(#000, #000) left / calc(100% - var(--blend-intrusion) + 1px) 100% no-repeat,
+      radial-gradient(ellipse var(--blend-core) 50% at 0% 50%, #000 100%, transparent calc(100% * var(--blend-intrusion) / var(--blend-core))) right / var(--blend-intrusion) 100% no-repeat;
   }
 }

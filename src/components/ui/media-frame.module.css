@@ -1,5 +1,6 @@
 .frame {
-  filter: drop-shadow(0 0.65rem 0.8rem var(--shadow-shaped-media));
+  filter: drop-shadow(0 0.2rem 0.35rem var(--shadow-shaped-media))
+    drop-shadow(0 0.8rem 1.1rem var(--shadow-shaped-media-depth));
 }
 .frame[data-shape="hero"] { --media-mask: url("/shapes/hero-frame-02.svg"); }
 .frame[data-shape="project"] { --media-mask: url("/shapes/media-frame-02.svg"); }
@@ -12,19 +13,19 @@
 }
 
 /* Rotate only the supplied mask; counter-rotate its contents to keep portraits upright. */
-.frame[data-shape="hero"] { position: relative; aspect-ratio: 760 / 1200; }
+.frame[data-shape="hero"] { position: relative; aspect-ratio: var(--portrait-ratio); }
 .frame[data-shape="hero"] .clip {
   position: absolute;
-  width: 157.894737%;
-  height: 63.333333%;
+  width: calc(100% / var(--portrait-ratio));
+  height: calc(100% * var(--portrait-ratio));
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
 }
 .frame[data-shape="hero"] .clip > * {
   position: absolute;
-  width: 63.333333%;
-  height: 157.894737%;
+  width: calc(100% * var(--portrait-ratio));
+  height: calc(100% / var(--portrait-ratio));
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);

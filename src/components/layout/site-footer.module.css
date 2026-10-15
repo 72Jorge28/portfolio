@@ -1,10 +1,12 @@
 .footer {
-  width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
+  width: 100%;
   margin-inline: auto;
   padding-block: 2rem;
 }
 
 .row, .bottom {
+  width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
+  margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;

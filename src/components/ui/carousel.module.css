@@ -128,7 +128,7 @@
 .viewport[data-loop-ready="true"] .slide { display: block; }
 
 .slide > article > :first-child {
-  opacity: 0.72;
+  opacity: var(--carousel-inactive-media-opacity, 0.72);
   transition: opacity 350ms ease;
 }
 .slide[data-active="true"] > article > :first-child,

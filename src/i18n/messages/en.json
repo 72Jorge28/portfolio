@@ -9,6 +9,9 @@
     "menu": "Menu",
     "close": "Close"
   },
+  "Identity": {
+    "role": "Software Developer"
+  },
   "Theme": {
     "label": "Theme",
     "system": "System",
@@ -76,7 +79,7 @@
   },
   "Hero": {
     "degree": "Graduate in Computer Engineering",
-    "portraitAlt": "Portrait of Jorge Ramos",
+    "portraitAlt": "Portrait of {name}",
     "portraitPlaceholder": "Portrait · coming soon"
   },
   "SelectedWork": {
@@ -87,8 +90,6 @@
   "Carousel": {
     "label": "Selected projects",
     "description": "carousel",
-    "previous": "Previous project",
-    "next": "Next project",
     "play": "Start automatic progression",
     "pause": "Pause automatic progression",
     "reducedMotion": "Automatic progression is disabled with reduced motion",

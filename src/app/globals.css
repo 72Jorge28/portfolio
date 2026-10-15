@@ -23,32 +23,39 @@
   --print-soft-foreground: color-mix(in srgb, var(--petrol) 45%, black);
   --print-strong: var(--petrol);
   --print-strong-foreground: var(--ivory);
+  --carousel-inactive-media-opacity: 0.72;
   --shadow-shaped-media: color-mix(in srgb, var(--petrol) 16%, transparent);
+  --shadow-shaped-media-depth: color-mix(in srgb, var(--petrol) 12%, transparent);
   --shadow-media: 0 2px 4px color-mix(in srgb, var(--petrol) 8%, transparent),
     0 14px 24px -12px color-mix(in srgb, var(--petrol) 26%, transparent),
     0 40px 65px -28px color-mix(in srgb, var(--petrol) 24%, transparent);
   --radius-control: 0.25rem;
   --content-width: 76rem;
   --page-gutter: clamp(1.25rem, 5vw, 5rem);
+  /* Shared native fallback also applies to the independent 404 document. */
+  --site-header-fallback: calc(5.6rem + 1px);
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --background: color-mix(in srgb, var(--petrol) 48%, black);
-  --surface: color-mix(in srgb, var(--petrol) 65%, black);
+  --background: #18231e;
+  --surface: #2b3b30;
+  --surface-elevated: #3b4d3e;
   --foreground: var(--ivory);
-  --muted: color-mix(in srgb, var(--ivory) 72%, var(--sage));
-  --border: color-mix(in srgb, var(--sage) 32%, var(--background));
-  --page-frame: color-mix(in srgb, #b8a675 65%, var(--background));
-  --control-border: color-mix(in srgb, var(--sage) 78%, var(--background));
-  --accent: color-mix(in srgb, var(--sage) 65%, var(--ivory));
+  --muted: color-mix(in srgb, var(--ivory) 72%, var(--accent));
+  --border: color-mix(in srgb, var(--accent) 32%, var(--background));
+  --page-frame: #b49a65;
+  --control-border: color-mix(in srgb, var(--accent) 78%, var(--background));
+  --accent: #afbea1;
   --accent-foreground: var(--background);
   --ornament: color-mix(in srgb, var(--sage) 48%, var(--background));
-  --media-mat: color-mix(in srgb, var(--petrol) 80%, var(--sage));
-  --media-placeholder: color-mix(in srgb, var(--petrol) 65%, var(--sage));
+  --media-mat: var(--surface-elevated);
+  --media-placeholder: var(--surface-elevated);
   --media-foreground: var(--ivory);
+  --carousel-inactive-media-opacity: 0.9;
   --media-line: color-mix(in srgb, var(--sage) 55%, transparent);
-  --shadow-shaped-media: color-mix(in srgb, var(--background) 75%, transparent);
+  --shadow-shaped-media: color-mix(in srgb, black 24%, transparent);
+  --shadow-shaped-media-depth: color-mix(in srgb, black 38%, transparent);
   --shadow-media: 0 2px 4px color-mix(in srgb, var(--background) 30%, transparent),
     0 14px 24px -12px color-mix(in srgb, var(--background) 75%, transparent),
     0 40px 65px -28px color-mix(in srgb, var(--background) 85%, transparent);
@@ -57,6 +64,29 @@
 
 html {
   min-height: 100%;
+  scroll-padding-block-start: var(--site-header-height, var(--site-header-fallback));
+}
+
+/* Root padding reserves the header once; target margin reserves only the outline. */
+:where(main[id], h1, h2, h3, [id], a, button, select, input, textarea, [tabindex]) {
+  scroll-margin-block: 0.5rem;
+}
+
+/* Native focus centers tall targets differently from fragment scrolling. */
+:where(main, footer) :where(a, button, select, input, textarea, [tabindex]):focus {
+  scroll-margin-block-start: calc(var(--site-header-height, var(--site-header-fallback)) + 0.5rem);
+}
+
+@media (min-width: 48rem) {
+  :root { --site-header-fallback: min(10rem, calc(100dvh - 2.75rem)); }
+}
+
+@media (min-width: 70rem) {
+  :root { --site-header-fallback: min(calc(6.6rem + 1px), calc(100dvh - 2.75rem)); }
+}
+
+@media print {
+  html { scroll-padding-block-start: 0; }
 }
 
 body {

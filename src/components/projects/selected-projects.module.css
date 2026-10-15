@@ -135,8 +135,5 @@
 .image {
   padding: 10%;
 }
-@media (min-width: 48rem) {
-  .heading { padding-inline: 4% 8%; }
-}
 
 .action { text-align: center; margin-block-start: 1.5rem; }

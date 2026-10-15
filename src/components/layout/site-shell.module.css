@@ -7,20 +7,39 @@
   margin-inline: auto;
 }
 
-.header, .main {
+.main {
   width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
   margin-inline: auto;
 }
 
 .header {
-  position: relative;
+  width: 100%;
+  container-type: inline-size;
+  --header-content-width: min(var(--content-width), calc(100cqw - 2 * var(--page-gutter)));
+  --header-content-inset: calc((100cqw - var(--header-content-width)) / 2);
+  position: sticky;
+  inset-block-start: 0;
   z-index: 5;
+  padding-block: 1rem;
+  /* At scroll origin, the main focus outline cannot gain room by scrolling. */
+  margin-block-end: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.headerContent {
+  margin-block: -1rem;
+}
+
+.headerControls {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 1rem;
-  border-bottom: 1px solid var(--border);
+  /* Keep control positions/padding, reserving an external outline gutter. */
+  width: calc(var(--header-content-width) + 1rem);
+  margin-inline-start: calc(var(--header-content-inset) - 0.5rem);
+  padding: 1rem 0.5rem;
 }
 
 .brand {
@@ -48,8 +67,6 @@
 
 .main {
   --main-block-padding: clamp(1.5rem, 3vw, 3rem);
-  /* Brand line box + header padding + border, before browser measurement. */
-  --site-header-fallback: calc(5.6rem + 1px);
   flex: 1;
   padding-block: var(--main-block-padding);
 }
@@ -71,14 +88,64 @@
 
 @media (min-width: 48rem) {
   .header { padding-block: 1.5rem; }
-  .main { --site-header-fallback: calc(6.6rem + 1px); }
+  .headerContent {
+    margin-block: -1.5rem;
+    max-block-size: calc(100dvh - 2.75rem - 1px);
+    overflow-y: auto;
+    /* Native keyboard scrolling keeps wrapped controls and outlines reachable. */
+    scroll-padding-block: 0.5rem;
+  }
+  .headerControls {
+    padding-block: 1.5rem;
+    align-items: safe center;
+  }
 }
 
 @media (min-width: 64rem) {
-  .frame { border-inline: 1px solid var(--page-frame); }
+  .frame {
+    position: relative;
+    isolation: isolate;
+    /* The content-box edges are the straight strokes' inner media anchors. */
+    border-inline: 2px solid transparent;
+  }
+
+  .frame::before, .frame::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    /* Keep the complete inert traces above the opaque sticky bar. */
+    z-index: 6;
+    box-sizing: border-box;
+    width: 0.75rem;
+    border: 2px solid var(--page-frame);
+    pointer-events: none;
+  }
+
+  .frame::before {
+    inset-inline-start: -2px;
+    border-right: 0;
+    border-radius: 0.75rem 0 0 0.75rem / 1.5rem 0 0 1.5rem;
+  }
+
+  .frame::after {
+    inset-inline-end: -2px;
+    border-left: 0;
+    border-radius: 0 0.75rem 0.75rem 0 / 0 1.5rem 1.5rem 0;
+  }
 }
 
 /* Home regions span the page; their content retains the shared inner width. */
+@media print {
+  .header {
+    position: relative;
+    margin-block-end: 0;
+  }
+  .headerContent {
+    max-block-size: none;
+    overflow: visible;
+  }
+}
+
 .main:has(> [data-home]) {
   --main-block-padding: 0px;
   width: 100%;

@@ -25,10 +25,18 @@ interface SiteContact {
 // Add verified public contact values here; missing fields are not rendered.
 const contact: SiteContact = {};
 
+const ownerName = {
+  firstName: "Jorge Luis",
+  lastName: "Ramos Suárez",
+};
+
 export const site = {
   name: "Portfolio",
   url: getSiteUrl(),
-  owner: "Jorge Ramos",
-  role: "Software Developer",
+  owner: {
+    ...ownerName,
+    fullName: `${ownerName.firstName} ${ownerName.lastName}`,
+    initials: `${ownerName.firstName[0]}${ownerName.lastName[0]}`,
+  },
   contact,
 };

@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { site } from "@/lib/site";
 import { SiteNavigation } from "@/components/navigation/site-navigation";
 import { LocaleSwitcher } from "@/components/navigation/locale-switcher";
 import { ThemeSwitcher } from "@/components/theme/theme-switcher";
@@ -19,9 +20,9 @@ export async function SiteHeader() {
       <Link
         href="/"
         className={styles.brand}
-        aria-label={`Jorge Ramos — ${t("home")}`}
+        aria-label={`${site.owner.fullName} — ${t("home")}`}
       >
-        JR<span aria-hidden="true">.</span>
+        {site.owner.initials}<span aria-hidden="true">.</span>
       </Link>
       <NavigationMenu labels={{ open: t("menu"), close: t("close") }}>
         <SiteNavigation
