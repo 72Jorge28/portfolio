@@ -42,11 +42,39 @@
 }
 
 .personalMedia {
+  position: relative;
+  background: transparent;
   box-sizing: border-box;
   width: 100%;
   aspect-ratio: 10 / 7;
-  padding-inline: var(--page-gutter) 55%;
+}
+
+.personalMask {
+  position: absolute;
+  inset: 0;
+  background: var(--media-placeholder);
   mask: url("/shapes/about-primary-divider.svg") left center / 100% 100% no-repeat;
+}
+
+.personalImage {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 62%;
+}
+
+.personalImage img {
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.directionImage {
+  position: absolute;
+  z-index: -2;
+  inset: 0 0 0 50%;
+}
+
+.directionImage img {
+  object-fit: cover;
 }
 
 @media (width < 48rem) {
@@ -56,16 +84,13 @@
     /* Reserve the complete painted x-extent, not the source's transparent tail. */
     aspect-ratio: 700 / 615.470032;
     align-content: start;
-    /* The upper 35% is opaque across this inset, including the concavity. */
-    padding: 20% 10% 0;
     background: transparent;
     mask: none;
   }
 
-  .personalMedia::before {
-    content: "";
+  .personalMask {
     position: absolute;
-    z-index: -1;
+    inset: auto;
     top: calc(100cqw * 5 / 7);
     left: 50%;
     /* Keep the full rotated canvas independent of the compact flow height. */
@@ -75,6 +100,21 @@
     pointer-events: none;
     background: var(--media-placeholder);
     mask: url("/shapes/about-primary-divider.svg") left center / 100% 100% no-repeat;
+  }
+
+  .personalImage {
+    inset: auto;
+    top: 50%;
+    left: calc(100cqw * 615.470032 / 1400);
+    width: 100cqw;
+    height: calc(100cqw * 615.470032 / 700);
+    /* Rotate only the contour; keep the photograph upright in its painted area. */
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+
+  .directionImage {
+    inset: auto 0 0;
+    height: var(--lower-media-height);
   }
 }
 
@@ -125,6 +165,8 @@
 }
 
 .direction {
+  position: relative;
+  isolation: isolate;
   min-width: 0;
   color: var(--muted);
   line-height: 1.8;
@@ -133,12 +175,18 @@
   padding-inline: var(--content-inset);
 }
 
+.direction::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: var(--surface);
+}
+
 .directionMedia {
-  position: relative;
-  isolation: isolate;
   box-sizing: border-box;
   aspect-ratio: 16 / 10;
-  padding: clamp(1.5rem, 3vw, 3rem);
 }
 
 @media (width < 48rem) {
@@ -149,29 +197,38 @@
   .future .composition {
     position: relative;
     isolation: isolate;
-    /* The natural text height locates the joint; the 16:10 box sizes its curve. */
+    /* Keep a visible curve, with a short feather rather than a separate band. */
     --lower-media-height: 62.5cqw;
-    --lower-core-height: calc(var(--lower-media-height) * 0.2);
-    --lower-blend-height: calc(var(--lower-media-height) * 0.32);
-    background: var(--media-placeholder);
+    --direction-edge: clamp(1.5rem, 10cqw, 2.5rem);
+    --direction-feather: clamp(0.75rem, 3cqw, 1.125rem);
+    --direction-core: calc(var(--direction-edge) - var(--direction-feather));
+    --direction-end: calc(100% * var(--direction-edge) / var(--direction-core));
+    gap: 0;
+  }
+
+  .direction {
+    padding-block-end: calc(clamp(1rem, 3vw, 1.75rem) + clamp(1rem, 2.5vw, 2rem));
+  }
+
+  .direction::before {
+    /* The text background ends in one continuous, softly feathered ellipse. */
+    inset-block-end: calc(-1 * var(--direction-edge));
+    mask:
+      linear-gradient(#000, #000) top / 100% calc(100% - var(--direction-edge) + 1px) no-repeat,
+      radial-gradient(ellipse 50% var(--direction-core) at 50% 0%,
+         #000 100%,
+        rgb(0 0 0 / 0.97) calc(100% + (var(--direction-end) - 100%) * 0.06),
+        rgb(0 0 0 / 0.9) calc(100% + (var(--direction-end) - 100%) * 0.12),
+        rgb(0 0 0 / 0.75) calc(100% + (var(--direction-end) - 100%) * 0.27),
+        rgb(0 0 0 / 0.5) calc(100% + (var(--direction-end) - 100%) * 0.5),
+        rgb(0 0 0 / 0.25) calc(100% + (var(--direction-end) - 100%) * 0.73),
+        rgb(0 0 0 / 0.1) calc(100% + (var(--direction-end) - 100%) * 0.88),
+        rgb(0 0 0 / 0.03) calc(100% + (var(--direction-end) - 100%) * 0.94),
+        transparent var(--direction-end)) bottom / 100% var(--direction-edge) no-repeat;
   }
 
   .directionMedia {
     background: transparent;
-  }
-
-  .future .composition::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    pointer-events: none;
-    background: var(--surface);
-    /* One opaque text/joint plane continues into the full-width downward ellipse.
-       The overlapping mask tiles prevent a fractional-pixel join, not a cap layer. */
-    mask:
-      linear-gradient(#000, #000) top / 100% calc(100% - var(--lower-media-height) + 1px) no-repeat,
-      radial-gradient(ellipse 50% var(--lower-core-height) at 50% 0%, #000 100%, transparent calc(100% * var(--lower-blend-height) / var(--lower-core-height))) bottom / 100% var(--lower-media-height) no-repeat;
   }
 }
 
@@ -209,53 +266,41 @@
   .future .composition {
     position: relative;
     isolation: isolate;
-    --blend-intrusion: clamp(3rem, 6vw, 6rem);
-    --blend-core: calc(var(--blend-intrusion) - 1.5rem);
+    --direction-edge: clamp(2rem, 3.5vw, 3rem);
+    --direction-feather: clamp(0.75rem, 1.5vw, 1.125rem);
+    --direction-core: calc(var(--direction-edge) - var(--direction-feather));
+    --direction-end: calc(100% * var(--direction-edge) / var(--direction-core));
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
     align-items: center;
   }
 
   .direction {
+    display: grid;
+    align-content: center;
     padding-inline-end: 1.5rem;
-    align-self: center;
+    align-self: stretch;
   }
 
   .directionMedia {
     width: 100%;
-    padding-inline-start: calc(var(--blend-intrusion) + 1.5rem);
     background: transparent;
   }
 
-  .directionMedia::before {
-    content: none;
-  }
-
-  /* Paint follows the row; the centered content box retains its 16:10 ratio. */
-  .future .composition::before {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    inset-block: 0;
-    inset-inline: 50% 0;
-    pointer-events: none;
-    background: var(--media-placeholder);
-  }
-
-  .future .composition::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset-block: 0;
-    inset-inline-start: 0;
-    width: calc(50% + var(--blend-intrusion));
-    pointer-events: none;
-    background: var(--surface);
-    /* An opaque left plane joins an opaque ellipse, even at the row's ends.
-       A 1px mask overlap avoids a fractional-pixel tile seam.
-       Feather outward from the core instead of fading beneath the text. */
+  .direction::before {
+    /* Extend only the rounded edge into the photo, not a wide translucent plane. */
+    inset-inline-end: calc(-1 * var(--direction-edge));
     mask:
-      linear-gradient(#000, #000) left / calc(100% - var(--blend-intrusion) + 1px) 100% no-repeat,
-      radial-gradient(ellipse var(--blend-core) 50% at 0% 50%, #000 100%, transparent calc(100% * var(--blend-intrusion) / var(--blend-core))) right / var(--blend-intrusion) 100% no-repeat;
+      linear-gradient(#000, #000) left / calc(100% - var(--direction-edge) + 1px) 100% no-repeat,
+      radial-gradient(ellipse var(--direction-core) 50% at 0% 50%,
+         #000 100%,
+        rgb(0 0 0 / 0.97) calc(100% + (var(--direction-end) - 100%) * 0.06),
+        rgb(0 0 0 / 0.9) calc(100% + (var(--direction-end) - 100%) * 0.12),
+        rgb(0 0 0 / 0.75) calc(100% + (var(--direction-end) - 100%) * 0.27),
+        rgb(0 0 0 / 0.5) calc(100% + (var(--direction-end) - 100%) * 0.5),
+        rgb(0 0 0 / 0.25) calc(100% + (var(--direction-end) - 100%) * 0.73),
+        rgb(0 0 0 / 0.1) calc(100% + (var(--direction-end) - 100%) * 0.88),
+        rgb(0 0 0 / 0.03) calc(100% + (var(--direction-end) - 100%) * 0.94),
+        transparent var(--direction-end)) right / var(--direction-edge) 100% no-repeat;
   }
 }

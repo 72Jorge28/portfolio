@@ -16,14 +16,18 @@ function getSiteUrl() {
   return url;
 }
 
-interface SiteContact {
+export interface SiteContact {
   github?: `https://${string}`;
   linkedin?: `https://${string}`;
+  whatsapp?: `https://${string}`;
   email?: string;
 }
 
 // Add verified public contact values here; missing fields are not rendered.
-const contact: SiteContact = {};
+const contact: SiteContact = {
+  github: "https://github.com/72Jorge28",
+  linkedin: "https://www.linkedin.com/in/jorge-ramos-79b709234/",
+};
 
 const ownerName = {
   firstName: "Jorge Luis",

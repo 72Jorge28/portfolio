@@ -7,12 +7,14 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
+import { siteIcons } from "@/lib/metadata";
 import { bodyFont, displayFont } from "@/fonts/fonts";
 import styles from "@/components/layout/site-shell.module.css";
 import "../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: site.url,
+  icons: siteIcons,
   title: { default: site.name, template: `%s | ${site.name}` },
 };
 

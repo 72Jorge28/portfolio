@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { site } from "@/lib/site";
+import { getFooterContacts } from "@/lib/contacts";
 import { navigationItems } from "@/components/navigation/navigation-items";
 import styles from "./site-footer.module.css";
 
@@ -8,11 +9,11 @@ export async function SiteFooter() {
   const [t, navigation, identity] = await Promise.all([
     getTranslations("Footer"), getTranslations("Navigation"), getTranslations("Identity"),
   ]);
-  const contacts = [
-    { label: "GitHub", href: site.contact.github },
-    { label: "LinkedIn", href: site.contact.linkedin },
-    { label: t("email"), href: site.contact.email ? `mailto:${site.contact.email}` : undefined },
-  ].filter((contact) => contact.href);
+  const contacts = getFooterContacts(site.contact).map((contact) => ({
+    ...contact,
+    label: contact.channel === "github" ? "GitHub"
+      : contact.channel === "linkedin" ? "LinkedIn" : t("email"),
+  }));
 
   return (
     <footer className={styles.footer}>
@@ -34,7 +35,7 @@ export async function SiteFooter() {
         {contacts.length > 0 && (
           <ul className={styles.links}>
             {contacts.map((contact) => (
-              <li key={contact.label}><a href={contact.href}>{contact.label}</a></li>
+              <li key={contact.channel}><a href={contact.href}>{contact.label}</a></li>
             ))}
           </ul>
         )}

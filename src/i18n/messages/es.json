@@ -20,9 +20,21 @@
   },
   "About": {
     "title": "Sobre mí",
-    "introduction": "Aquí aparecerá una breve presentación personal.",
-    "approachTitle": "Mi enfoque",
-    "approachDescription": "Pronto compartiré más sobre cómo trabajo y lo que valoro."
+    "introduction": "Me apasiona la tecnología: disfruto descubrir cómo funciona, explorar sus posibilidades y aprender a crear soluciones con ella.",
+    "background": "Soy graduado en Ingeniería Informática por la Universidad de Oriente. Desde abril de 2026 trabajo en Desoft, una empresa de desarrollo de software, programando con Odoo. Actualmente también trabajo en desarrollo web con Next.js.",
+    "explorationTitle": "Lo que exploro",
+    "explorationDescription": "He probado distintas áreas, como el desarrollo móvil, la realidad aumentada y el IoT, y he creado proyectos propios como parte de mi aprendizaje. Me interesan especialmente las tecnologías que permiten interpretar el mundo mediante cámaras, como la percepción y la visión por computador. Actualmente sigo explorando estos campos y la ciberseguridad.",
+    "approachTitle": "Mi forma de trabajar",
+    "approachDescription": "Me gusta investigar, comprender los problemas y buscar soluciones de forma organizada. Procuro aplicar principios de programación, modularidad y arquitectura limpia para reducir errores y facilitar el crecimiento del software. Me importa hacer las cosas bien y seguir aprendiendo durante el proceso.",
+    "contactsTitle": "Dónde encontrarme",
+    "contacts": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp",
+      "email": "Correo electrónico"
+    },
+    "unavailable": "Aún no disponible.",
+    "portraitAlt": "Retrato de {name}"
   },
   "Projects": {
     "title": "Proyectos",
@@ -102,7 +114,7 @@
     "introduction": "Soy desarrollador de software y graduado en Ingeniería Informática. Me apasiona crear software y entender cómo funciona la tecnología, más allá de utilizarla.",
     "direction": "Me interesa el software que interactúa con el mundo físico o ayuda a comprenderlo. Actualmente estoy construyendo mis bases en percepción, visión por computador y computación espacial: un camino que estoy aprendiendo a explorar.",
     "readMore": "Conocer más",
-    "personalPlaceholder": "Fotografía personal · próximamente",
-    "directionPlaceholder": "Imagen sobre mi dirección · próximamente"
+    "portraitAlt": "Retrato de {name}",
+    "directionAlt": "Ilustración de un dron, una lente de cámara y un escudo de seguridad sobre una ciudad y un paisaje montañoso"
   }
 }

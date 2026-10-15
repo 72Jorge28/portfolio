@@ -1,0 +1,119 @@
+.page {
+  overflow-wrap: anywhere;
+}
+
+.page > * {
+  min-width: 0;
+}
+
+.opening {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.portrait {
+  width: min(90%, 22rem);
+  justify-self: center;
+}
+
+.portraitContent {
+  background: var(--media-placeholder);
+}
+
+.photoSafeBox {
+  position: absolute;
+  inset: 5%;
+}
+
+.contacts {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1.5rem 2rem;
+  margin-block-start: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.contactLink,
+.contactStatic {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+.contactLink {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.contactSymbol {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 3.75rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  color: var(--accent-foreground);
+  isolation: isolate;
+}
+
+.contactSymbol::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent);
+  mask: url("/shapes/hero-frame-02.svg") center / 100% 100% no-repeat;
+  transform: rotate(-15deg);
+}
+
+.contactSymbol[data-channel="linkedin"]::before,
+.contactSymbol[data-channel="email"]::before {
+  mask-image: url("/shapes/media-frame-02.svg");
+}
+
+.contactSymbol[data-channel="linkedin"]::before {
+  inset: -0.25rem;
+}
+
+.unavailable {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 48rem) {
+  .opening {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: 1.5rem;
+  }
+
+  .introduction {
+    grid-column: 1;
+    grid-row: 1;
+    padding-block-start: 2rem;
+    align-self: end;
+  }
+
+  .portrait {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    width: min(100%, 22rem);
+    align-self: center;
+    justify-self: end;
+  }
+
+  .background {
+    grid-column: 1;
+    grid-row: 2;
+    padding-block-end: 2rem;
+  }
+}

@@ -6,6 +6,17 @@ import { site } from "./site";
 
 type PageName = "home" | "about" | "projects";
 
+export const siteIcons: Metadata["icons"] = {
+  icon: [
+    { url: "/favicon.ico", sizes: "any" },
+    { url: "/images/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    { url: "/images/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    { url: "/images/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+    { url: "/images/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+  ],
+  apple: [{ url: "/images/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+};
+
 export async function createPageMetadata(
   locale: Locale,
   page: PageName,

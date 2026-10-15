@@ -39,6 +39,7 @@
 .links a {
   display: inline-flex;
   align-items: center;
+  min-width: 44px;
   min-height: 2.75rem;
   font-size: 0.875rem;
 }

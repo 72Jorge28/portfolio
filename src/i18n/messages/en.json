@@ -19,10 +19,22 @@
     "dark": "Dark"
   },
   "About": {
-    "title": "About",
-    "introduction": "A brief personal introduction will appear here.",
-    "approachTitle": "My approach",
-    "approachDescription": "More about how I work and what I value, coming soon."
+    "title": "About me",
+    "introduction": "I'm passionate about technology: I enjoy discovering how it works, exploring its possibilities and learning to create solutions with it.",
+    "background": "I'm a Computer Engineering graduate of Universidad de Oriente. Since April 2026, I've worked at Desoft, a software development company, programming with Odoo. I also currently work in web development with Next.js.",
+    "explorationTitle": "What I'm exploring",
+    "explorationDescription": "I've tried different areas, including mobile development, augmented reality and IoT, and I've created personal projects as part of my learning. I'm especially interested in technologies that interpret the world through cameras, such as perception and computer vision. I continue to explore these fields and cybersecurity.",
+    "approachTitle": "How I work",
+    "approachDescription": "I enjoy researching, understanding problems and looking for solutions in an organized way. I strive to apply programming principles, modularity and clean architecture to reduce errors and help software grow. I care about doing things well and continuing to learn along the way.",
+    "contactsTitle": "Where to find me",
+    "contacts": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp",
+      "email": "Email"
+    },
+    "unavailable": "Not available yet.",
+    "portraitAlt": "Portrait of {name}"
   },
   "Projects": {
     "title": "Projects",
@@ -102,7 +114,7 @@
     "introduction": "I’m a software developer and a Computer Engineering graduate. I love building software and understanding how technology works, beyond simply using it.",
     "direction": "I’m drawn to software that interacts with or makes sense of the physical world. I’m currently building my foundations in perception, computer vision and spatial computing—a direction I’m learning to explore.",
     "readMore": "Read more",
-    "personalPlaceholder": "Personal photograph · coming soon",
-    "directionPlaceholder": "Direction image · coming soon"
+    "portraitAlt": "Portrait of {name}",
+    "directionAlt": "Illustration of a drone, a camera lens and a security shield above a city and mountain landscape"
   }
 }
