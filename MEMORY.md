@@ -4,6 +4,18 @@ Operational context; permanent rules and commands live in `AGENTS.md`.
 
 ## Current state and decisions
 
+- Spec005 revision2 + static video poster amendment are CLOSED. Owner explicitly
+  accepted final preview with “Lo apruebo” in response to closing this SDD and
+  deferring redesign. R1–R10/A1–A5 complete; final reviewer `VEREDICTO: APROBADO`
+  covers RF-1–12/RNF-1–6 and completion criteria. Older pending states below are
+  historical, superseded by this closure. No commit/push/publication authorized.
+  Final buildv1ReJ_mKnhx437kbFY4df,108 source hashes match manifest
+  b77f6a5e298f6daf47a966d4f10e1783c2f774ba70c7ba744d659840163fd24d.
+  Six checks/58 explicit-origin tests per mode pass; closure only rechecked hashes
+  and documentation (`git diff --check` exit0), not new application runs. See
+  spec005/{spec,tasks,validation,owner-preview}.md and amendment-a5/MAIN-REPORT.md.
+  Broader redesign is future separate work; inherited header exceptions, two R7
+  lint warnings and physical/other-browser/screen-reader verification remain.
 - Spec004 About is implemented and closed: T1–T10 complete, owner accepted final
   visuals and independent reviewer returned `VEREDICTO: APROBADO` for all RF/RNF.
   See `specs/004-about-page/{spec,plan,tasks,validation}.md` for requirements/evidence.
@@ -19,9 +31,139 @@ Operational context; permanent rules and commands live in `AGENTS.md`.
   native24 supplements; independent visual/keyboard rereview passed. Do not call
   the whole matrix overflow-free or repair unrelated shared chrome automatically.
 - Owner authorized publication with “Esta bien, ya podemos subir entonces” and
-  reconfirmed “continuemos”. Publish reviewed About + pending favicon/About-asset
-  changes only; exclude local agent configurations/backups and unreviewed new
-  `public/images/projects/` resources. Commit/push pending, not yet confirmed.
+  reconfirmed “continuemos”. Reviewed About + pending favicon/About-asset changes
+  published to `72Jorge28/portfolio`, origin/main, commit
+  `c5ee587370113b4688c9c7f2e9178cbf8466a5fa` (31 files). HEAD and remote main match;
+  all93 approved source hashes preserved. Excluded29 local agent/config/backup files.
+  Unreviewed project-image folders were absent at delivery; none were added. Vercel
+  Owner subsequently confirmed that this version is deployed on Vercel; no separate
+  agent production-browser verification is claimed.
+- Spec005 revision1 history (superseded by approved revision2 below):
+  Owner approved plan/tasks (“El video de prueba no tiene nada privado. Apruebo el
+  plan”); privacy confirmation is owner-attributed, not an agent inspection claim.
+  Ordered implementation authorized. T1 inspected baseline/PNG640x360 and MP4
+  1920x1080,5.681s,H.264 with non-silent mono MP3 audio; metadata, decoding and sampled
+  frames checked, source bytes preserved. Owner explicitly authorized continuing
+  unchanged with audio-content review based on his confirmation, not agent hearing;
+  plan/tasks record this sample-specific disposition. T1/T2 complete: samples renamed
+  byte-identically, central media model/projection/localization/tests added. Owner
+  authorized narrow plan adjustment `allowImportingTsExtensions:true` in tsconfig,
+  retaining noEmit/strictness; TS5097 resolved. Six checks pass;37 tests pass,2 origin
+  integrations initially skipped pending T6. T3–T5 complete: independent cyclic
+  galleries, both responsive compositions/reset, native top-layer image/video
+  viewer with dark blurred backdrop and focus/scroll restoration. Explicit native
+  Play/Pause and technical non-silent audio→RMS0 on close/error/route exit verified;
+  no human listening claimed. T6–T8 complete: six checks and53/53 explicit-origin
+  tests per mode pass without skips. Final build u5iQwbBJ_Jvjlh_nz7zAe;102-file
+  manifest3d939d286518ad739dcd624b979db2ffd10f791efbb20688a4339af3b2a2e5f8.
+  Final160-condition/640-state matrix includes320 viewers. Corrections keep focused
+  arrows visible, reserve long-title space, prevent landscape media collapse and
+  remove opaque viewer panel so dark blurred page remains visible around media.
+  Native playback/volume/seek, audio stop, fixtures and preservation verified;
+  eight inherited header exceptions remain separate. Independent review found no
+  technical defects; two documentation attribution corrections completed. Formal
+  verdict CAMBIOS NECESARIOS remains only for final owner acceptance; T9/T10 unchecked.
+  Reviewer independently rebuilt z2-vLlzLel8IKP2pnwnyY from identical102 sources,
+  six checks+53/53 per mode passed. Evidence: spec005/validation.md. No publication.
+- Spec005 owner preview intentionally running on http://127.0.0.1:3000/es/projects
+  (also /en/projects), started by implementer: CLI257917/Next257934/pnpm257817,
+  repo CWD, log /tmp/opencode/spec005-owner-preview/dev.log. Reverify ownership
+  before stopping; don't infer PIDs persist. Ask owner to test arrows/full reset,
+  image enlargement, video explicit Play and all closure paths before spec closure.
+- Owner rejected Spec005 prototype and clarified requirements (2026-10-16).
+  Owner approved revision2 requirements (“La apruebo”,2026-10-16):
+  title left vertically centered on strip, arrows below centered across whole block;
+  constant-size organic Home-shaped media translate left with next-item peek, not
+  enlarge on arrows; compact raised title and full initial reset remain. Viewer uses
+  gray translucent blurred glass-like backdrop, page visible behind, simple X at
+  media's upper-right corner; native video controls unchanged.
+  Owner jointly approved revised plan/tasks (“Las apruebo”,2026-10-16).
+  R1–R4 complete: pure projection, stable Home-masked cells, initial heading/media
+  alignment and whole-block bottom controls (both0px delta nominally), glass viewer
+  gray28%/blur12px with44px X anchored to the actual media corner. Media stays
+  559.359x354.25px across states at1440; arrows/focus remain stable without scrolling.
+  R4 build qozzm3JCprJi5MEqtAzZF; six checks pass,44 tests pass/2 origin integrations
+  skipped pending R6. R5 remains blocked (2026-10-21), no new native lifecycle cases:
+  pnpm12 `verifyDepsBeforeRun` defaults to install, triggering dependency recovery
+  before start; downloads failed DNS/timeouts. Next package/bin now absent; the exact
+  original node_modules mismatch is unknown. Node24.21.0/pnpm12.4.1 match requirements;
+  lock/config versions and95 source hashes preserved. Read-only diagnosis recorded.
+  Owner authorized the proposed frozen install with contextual “continuemos”. On
+  2026-10-22 `pnpm install --frozen-lockfile` exited0; Next16.3.5/bin, React19.2.8
+  and TS5.9.3 are available, lock/config/source/media unchanged. It finished22ms
+  without reported downloads; don't attribute any earlier restoration to this run.
+  R5 now complete without app-code changes:128 native lifecycle cases,80 audio-active
+  exits,64 paused reopenings and4 native keyboard/control suites passed in dev/prod.
+  RMS active→0 on X/Escape/backdrop/error/route exit; no human hearing claimed.
+  Served build qozzm3JCprJi5MEqtAzZF/95 source hashes preserved; owned resources
+  closed. R6–R8 now complete: fresh six checks and56/56 explicit-origin tests per
+  mode without skips; final R8 build p4JBtnt3Vx1Ej5xfhOPdC. No final app/config changes,
+  all fixtures restored. R7 matrix160/640 states/320 viewers, media-dimension delta0;
+  R8 added data fixtures, repeated cycles, resize, native controls/audio and no-JS404
+  preservation. Source107 manifest d0dd23b7491a24ec9a754f991683a125e6f9f4aa05566585277aaa7eb1f69450
+   retained for R6–R8; current protected local files19, not historical29.
+   R9 complete: independent review found an introduced React heading-key warning,
+   fixed in correction cycle1 with only `key={project.slug}` on the passed H2.
+   Six fresh checks and56/56 explicit-origin tests per mode pass; independent
+   recheck found no remaining technical/documentation blockers. Corrected build
+   `9GewD2EQsmxotE98L_iMX`; source107 manifest
+   `458a5794fa8621d60d48951575cbacc51e922f6ea6be5119bb155f27aff4a5b8`.
+   Formal CAMBIOS NECESARIOS concerned R10 owner acceptance; spec not closed.
+   Owner now requests an inline static frame from the actual video instead of the
+   green placeholder, explicitly through this open SDD. Planner amended spec.md;
+   amendment explicitly approved by owner with “La apruebo”. Planner updated
+   plan/tasks: A1 still/contracts → A2 rendering/failure isolation → A3 checks →
+   A4 bounded browser verification → A5 independent review → pending original R10.
+   Owner jointly approved plan/tasks with “Lo apruebo”; ordered implementation authorized.
+   A1 complete: actual video frame at2s,1920x1080 PNG configured centrally as optional
+   video poster; original samples unchanged. Poster SHA256
+   `95229f54968dfe293009ee28afd693c7eca28b772d968ca5659b314487869380`.
+   Contract TDD red→green,46 pass/2 HTTP skips; six checks pass, build/type checks
+   isolated to protect running preview's .next. A2 complete: masked real static frame,
+   localized cues and per-item/source poster-failure isolation;12 focused browser
+   conditions and six checks pass (46 tests/2 HTTP skips). Preview3131 intentionally
+   retains previous UI/build until handoff. A3 complete: six checks and58/58 explicit
+   dev/prod tests per mode, zero skips. Isolated buildDBMR67Pqq8HA7YydRu4uS;
+   source108 manifest682887addfa73f8e511105c7e8d26816de5e9b130c83f54dc930a44b9c8649f5.
+   A4 complete: cue clipping at320/native24/150 corrected with three local CSS rules;
+   final40+16 browser conditions, six checks and58/58 dev/prod integrations pass.
+   Audio/reopen/resize/poster-error/fixture evidence retained with explicit attribution.
+   Final buildv1ReJ_mKnhx437kbFY4df; source108 manifest
+   b77f6a5e298f6daf47a966d4f10e1783c2f774ba70c7ba744d659840163fd24d.
+   Original media/local configs/root .next preserved. Preview3131 disappeared after
+   restarts, not restarted; root build still old UI. A5 independent review complete:
+   24 fresh conditions,24 native Play/close checks and4 blocked-poster loads pass;
+   no technical/documentation blockers. Formal CAMBIOS NECESARIOS solely R10 human
+   acceptance; durable report/captures in amendment-a5/. Updated owner preview now
+   intentionally active http://127.0.0.1:3131/es/projects (also /en/projects), own
+   PID72405/CWD /tmp/opencode/spec005-a4/prod, final buildv1ReJ_mKnhx437kbFY4df.
+   Both HTTP200,108 source hashes and three loaded posters verified; no inline
+   players. Log /tmp/opencode/spec005-amendment-owner-preview/server.log;
+   details owner-preview.md. Reverify ownership/liveness before reuse or stopping.
+   General redesign deferred in coordinator's
+   recommendation; functional praise is not final R10 acceptance.
+   Evidence: revision2-r9-correction1/. R10 owner preview intentionally running at
+   http://127.0.0.1:3131/es/projects (also /en/projects), verified corrected build,
+   both HTTP200 and107/107 source hashes. Own Next80833/pnpm80733, repo CWD;
+   logs /tmp/opencode/spec005-rev2-owner-preview/. Reverify ownership before stopping;
+   PIDs/origin can become stale. No publication authorized.
+  R5–R10 cover lifecycle, checks/matrix,
+  projection/render, heading/bottom controls, glass viewer/X, lifecycle, checks/matrix,
+  independent review and owner acceptance. T1–T8 remain revision1 history; old T9/T10
+  superseded, not completed. Old implementation/evidence is not revision2 compliance.
+  Interactive sample-only prototype:
+  stacked independent galleries for the three existing projects, initial left title/
+   right media; nonfirst items compact title above shifted constant-size media; returning to first
+  in either direction restores the entire initial composition. Future catalog-driven
+  projects/media and optional live links; none of the latter verified initially.
+- Owner supplied sample PNG+MP4 under `public/images/pruebas/`, authorized convenient
+  renaming (completed demo-image.png/demo-video.mp4). Video plays only enlarged, with
+  native controls and explicit Play; inline preview never plays. Approved defaults:
+  same sample pair per project, mobile vertical flow, modal Close/Escape/backdrop
+  with focus/scroll restoration. Native control language/size belongs to browser;
+  app controls must be localized and44px. Source video playback already verified;
+  audio-content privacy is owner-confirmed under explicit authorization, not agent
+  hearing. Home unchanged; no Projects publication authorized.
 - Latest dev origin was `http://localhost:3000/es/about`; preserve user servers.
 - Repeated localhost `/socket.io`404 requests came from another open page, confirmed
   by the owner; not a portfolio defect and no correction is needed.
@@ -120,8 +262,8 @@ Operational context; permanent rules and commands live in `AGENTS.md`.
 
 ### Content and documentation
 
-- About Preview has substantive copy but its Read more destination remains placeholder
-  content. Finish About/Projects, case studies/media and verified contacts before launch.
+- About and its Read more destination are complete under Spec004. Projects/media and
+  further verified contact destinations remain pending.
 - Short mobile Hero identity placement may merit product review; an earlier below-fold
   observation predates current typography. Do not treat old coordinates as current proof.
 - README/visual-system documentation and historical browser reports have drifted after

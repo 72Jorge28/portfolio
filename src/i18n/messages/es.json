@@ -43,6 +43,27 @@
     "technologies": "Tecnologías",
     "repository": "Código fuente",
     "live": "Visitar proyecto",
+    "media": {
+      "sampleLabel": "Material de demostración",
+      "sampleExplanation": "Estas muestras sirven para probar la galería, no representan el trabajo real de este proyecto.",
+      "empty": "Aún no hay material multimedia del proyecto.",
+      "unavailable": "Este contenido no está disponible. Puedes probar otro elemento o cerrar el visor.",
+      "galleryLabel": "Contenido multimedia de {title}",
+      "previous": "Contenido anterior de {title}",
+      "next": "Contenido siguiente de {title}",
+      "position": "{title}: contenido {current} de {total}",
+      "openImage": "Ampliar imagen de {title}",
+      "openVideo": "Ampliar vídeo de {title}",
+      "videoPreview": "Vídeo · ampliar para reproducir",
+      "videoPreviewCompact": "Vídeo ↗",
+      "previewUnavailable": "Vista previa no disponible.",
+      "viewerLabel": "Visor multimedia de {title}",
+      "close": "Cerrar visor",
+      "alternatives": {
+        "sampleImage": "Ilustración de muestra de un escudo azul de ciberseguridad y un candado; no es una captura del proyecto.",
+        "sampleVideo": "Grabación de pantalla de muestra para probar el visor de vídeo; no es una grabación de este proyecto."
+      }
+    },
     "status": {
       "in-progress": "En desarrollo",
       "completed": "Completado",

@@ -1,8 +1,11 @@
 import type messages from "@/i18n/messages/en.json";
 import type { Project } from "./types";
+import type { ProjectMediaDescriptor } from "./types";
+import { SAMPLE_MEDIA_PAIR } from "./media.ts";
 
-type ProjectEntry = Omit<Project, "title" | "shortDescription" | "category" | "caseStudy"> & {
+export type ProjectEntry = Omit<Project, "title" | "shortDescription" | "category" | "caseStudy" | "media"> & {
   contentKey: keyof typeof messages.ProjectContent;
+  media?: readonly ProjectMediaDescriptor[];
 };
 
 export const projectCatalog: readonly ProjectEntry[] = [
@@ -11,6 +14,7 @@ export const projectCatalog: readonly ProjectEntry[] = [
     contentKey: "expensesAndSavings",
     technologies: [],
     images: [],
+    media: SAMPLE_MEDIA_PAIR,
     featured: true,
     mediaTone: "ivory",
   },
@@ -19,6 +23,7 @@ export const projectCatalog: readonly ProjectEntry[] = [
     contentKey: "gelysEventStyling",
     technologies: [],
     images: [],
+    media: SAMPLE_MEDIA_PAIR,
     featured: true,
     mediaTone: "sage",
   },
@@ -27,6 +32,7 @@ export const projectCatalog: readonly ProjectEntry[] = [
     contentKey: "livingGallery",
     technologies: [],
     images: [],
+    media: SAMPLE_MEDIA_PAIR,
     featured: true,
     mediaTone: "petrol",
   },

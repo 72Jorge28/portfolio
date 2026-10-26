@@ -43,6 +43,27 @@
     "technologies": "Technologies",
     "repository": "Source code",
     "live": "Visit project",
+    "media": {
+      "sampleLabel": "Demonstration material",
+      "sampleExplanation": "These samples demonstrate the gallery, not this project's actual work.",
+      "empty": "No project media is available yet.",
+      "unavailable": "This media is unavailable. You can try another item or close the viewer.",
+      "galleryLabel": "Media for {title}",
+      "previous": "Previous media for {title}",
+      "next": "Next media for {title}",
+      "position": "{title}: media {current} of {total}",
+      "openImage": "Enlarge image for {title}",
+      "openVideo": "Enlarge video for {title}",
+      "videoPreview": "Video · enlarge to play",
+      "videoPreviewCompact": "Video ↗",
+      "previewUnavailable": "Preview unavailable.",
+      "viewerLabel": "Media viewer for {title}",
+      "close": "Close viewer",
+      "alternatives": {
+        "sampleImage": "Sample illustration of a blue cybersecurity shield and padlock; not a project screenshot.",
+        "sampleVideo": "Sample screen recording for testing the video viewer; not a recording of this project."
+      }
+    },
     "status": {
       "in-progress": "In progress",
       "completed": "Completed",

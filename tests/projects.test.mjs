@@ -3,6 +3,22 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { projectCatalog } from "../src/lib/projects/catalog.ts";
 
+test("the three authoritative projects explicitly use image-first sample media without changing Home images", () => {
+  assert.deepEqual(projectCatalog.map(({ slug, contentKey }) => [slug, contentKey]), [
+    ["expenses-and-savings", "expensesAndSavings"],
+    ["gelys-event-styling", "gelysEventStyling"],
+    ["living-gallery", "livingGallery"],
+  ]);
+  for (const project of projectCatalog) {
+    assert.deepEqual(project.images, []);
+    assert.deepEqual(project.technologies, []);
+    assert.equal(project.liveUrl, undefined);
+    assert.deepEqual(project.media?.map(({ kind, isSample }) => [kind, isSample]), [
+      ["image", true], ["video", true],
+    ]);
+  }
+});
+
 test("project slugs are unique route segments and every record has localized content", async () => {
   const slugs = projectCatalog.map((project) => project.slug);
   assert.equal(new Set(slugs).size, slugs.length);
